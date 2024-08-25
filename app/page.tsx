@@ -1,33 +1,173 @@
-import AcmeLogo from '@/app/ui/acme-logo';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
 
-export default function Page() {
+
+import Image from "next/image";
+import clsx from 'clsx';
+import {inter} from '@/app/ui/fonts';
+import Link from "next/link";
+//import {useState} from 'react';
+import {PrefMenu} from '@/app/ui/buttons';
+import {
+  PlusIcon
+} from '@heroicons/react/24/outline';
+
+
+
+
+export default function Home() {
+  //const [openMenu,setOpenMenu] = useState(false);
   return (
-    <main className="flex min-h-screen flex-col p-6">
-      <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
-        {/* <AcmeLogo /> */}
-      </div>
-      <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
-          <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}>
-            <strong>Welcome to Acme.</strong> This is the example for the{' '}
-            <a href="https://nextjs.org/learn/" className="text-blue-500">
-              Next.js Learn Course
-            </a>
-            , brought to you by Vercel.
-          </p>
-          <Link
-            href="/login"
-            className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
+    <main className="flex min-h-screen flex-col items-center p-16 md:p-24">
+
+      {/* top row */}
+      <div className="flex z-10 w-full justify-center justify-between items-center flex-col">
+        <div>
+        <Link
+            className="pointer-events-none flex gap-2 p-8 lg:pointer-events-auto lg:p-0 text-center"
+            href="https://weblocomotive.com"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
+            <Image
+              src="/images/pinklemonade.png"
+              alt="Pink Lemonade Logo"
+              className=""
+              width={600}
+              height={328}
+              priority
+            />
+          </Link>
+          <Link
+            className={`${inter.className} pointer-events-none block gap-2 p-0 lg:pointer-events-auto text-center w-full`}
+            href="https://weblocomotive.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p className={`${inter.className} `}>By <span className="uppercase">Web Locomotive</span></p>
           </Link>
         </div>
-        <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
-          {/* Add Hero Images Here */}
-        </div>
+     
       </div>
+
+      <div className="relative flex place-items-center pt-16 flex-col">
+       
+        <div className="flex flex-col text-center">
+        <h2 className="text-4xl pt-0 pb-8">Welcome: [name]</h2>
+        <h2 className="text-xl">Refreshment Selections <PlusIcon className="w-8 inline-block ml-4" /></h2>
+
+        <div  className="text-left bg-white p-16 my-16 w-full border-solid border-2 border-sky-500">
+          <h2 className="text-xl font-bold pb-6">Menu</h2>
+          {/*https://www.w3schools.com/react/react_lists.asp*/}
+        <ul role="list" className="list-disc list-outside">
+          <li>Frequency: Once Daily</li>
+          <li>Servings
+            <ul role="list" className="list-disc list-outside pl-4" >
+              <li><span className="font-bold">Serving 1</span>
+                <ul role="list" className="list-disc list-outside pl-4">
+                  <li>Types:
+                    <ul role="list" className="list-disc list-outside pl-4">
+                      <li>Pink Lemonade</li>
+                      <li>Capuchino</li>
+                    </ul>
+                  </li>
+                  <li>Formats
+                    <ul role="list" className="list-disc list-outside pl-4">
+                      <li>Memes</li>
+                      <li>Poetry</li>
+                    </ul>
+                  </li>
+                  <li>Length: 5 minutes</li>
+                </ul>
+
+              </li>
+            </ul>
+
+          </li>
+        </ul>
+
+        </div>
+
+        <PrefMenu />
+        
+        </div>
+        <div className="flex p-16" >
+          <h2>Data Feed</h2>
+        </div>
+
+
+      </div>
+
+      {/*<div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
+        <a
+          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2 className="mb-3 text-2xl font-semibold">
+            Docs{" "}
+            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+              -&gt;
+            </span>
+          </h2>
+          <p className="m-0 max-w-[30ch] text-sm opacity-50">
+            Find in-depth information about Next.js features and API.
+          </p>
+        </a>
+
+        <a
+          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2 className="mb-3 text-2xl font-semibold">
+            Learn{" "}
+            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+              -&gt;
+            </span>
+          </h2>
+          <p className="m-0 max-w-[30ch] text-sm opacity-50">
+            Learn about Next.js in an interactive course with&nbsp;quizzes!
+          </p>
+        </a>
+
+        <a
+          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2 className="mb-3 text-2xl font-semibold">
+            Templates{" "}
+            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+              -&gt;
+            </span>
+          </h2>
+          <p className="m-0 max-w-[30ch] text-sm opacity-50">
+            Explore starter templates for Next.js.
+          </p>
+        </a>
+
+        <a
+          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2 className="mb-3 text-2xl font-semibold">
+            Deploy{" "}
+            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+              -&gt;
+            </span>
+          </h2>
+          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
+            Instantly deploy your Next.js site to a shareable URL with Vercel.
+          </p>
+        </a>
+      </div>*/}
+
+
+      
     </main>
   );
 }
