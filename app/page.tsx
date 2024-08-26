@@ -1,7 +1,7 @@
 
 
 import Image from "next/image";
-import {inter} from '@/app/ui/fonts';
+import {inter, teko} from '@/app/ui/fonts';
 import Link from "next/link";
 //import {useState} from 'react';
 import {PrefMenu} from '@/app/ui/buttons';
@@ -40,7 +40,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <p className={`${inter.className} `}>By <span className="uppercase">Web Locomotive</span></p>
+            <p className={`${teko.className} `}>By <span className="uppercase">Web Locomotive</span></p>
           </Link>
         </div>
      
@@ -49,7 +49,7 @@ export default function Home() {
       <div className="relative flex place-items-center pt-16 flex-col">
        
         <div className="flex flex-col text-center">
-        <h2 className="text-4xl pt-0 pb-8">Welcome: [name]</h2>
+        <h2 className={`${inter.className} text-4xl pt-0 pb-8`}>Welcome [name]</h2>
 
         <Recipes />
       
