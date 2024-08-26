@@ -28,7 +28,7 @@ export default function RootLayout({
       <div className="flex h-screen flex-col md:flex-col md:overflow-hidden">
         
         <div className="flex-grow p-6 pb-24 md:overflow-y-auto md:p-12 md:pb-16">{children}</div>
-        <div className="flex-grow p-6 md:p-4 fixed bottom-0 left-0 right-0 bg-pink-500 text-violet-950 font-bold ">
+        <div className="flex-grow p-6 md:p-4 fixed bottom-0 left-0 right-0 bg-secondary_pink text-primary_pink font-bold hover:text_slate_50">
         <BottomNav />
         </div>
         

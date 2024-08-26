@@ -1,14 +1,12 @@
 
 
 import Image from "next/image";
-import clsx from 'clsx';
 import {inter} from '@/app/ui/fonts';
 import Link from "next/link";
 //import {useState} from 'react';
 import {PrefMenu} from '@/app/ui/buttons';
-import {
-  PlusIcon
-} from '@heroicons/react/24/outline';
+import Recipes from '@/app/ui/recipes';
+
 
 
 
@@ -52,40 +50,9 @@ export default function Home() {
        
         <div className="flex flex-col text-center">
         <h2 className="text-4xl pt-0 pb-8">Welcome: [name]</h2>
-        <h2 className="text-xl">Refreshment Selections <PlusIcon className="w-8 inline-block ml-4" /></h2>
 
-        <div  className="text-left bg-white p-16 my-16 w-full border-solid border-2 border-sky-500">
-          <h2 className="text-xl font-bold pb-6">Menu</h2>
-          {/*https://www.w3schools.com/react/react_lists.asp*/}
-        <ul role="list" className="list-disc list-outside">
-          <li>Frequency: Once Daily</li>
-          <li>Servings
-            <ul role="list" className="list-disc list-outside pl-4" >
-              <li><span className="font-bold">Serving 1</span>
-                <ul role="list" className="list-disc list-outside pl-4">
-                  <li>Types:
-                    <ul role="list" className="list-disc list-outside pl-4">
-                      <li>Pink Lemonade</li>
-                      <li>Capuchino</li>
-                    </ul>
-                  </li>
-                  <li>Formats
-                    <ul role="list" className="list-disc list-outside pl-4">
-                      <li>Memes</li>
-                      <li>Poetry</li>
-                    </ul>
-                  </li>
-                  <li>Length: 5 minutes</li>
-                </ul>
-
-              </li>
-            </ul>
-
-          </li>
-        </ul>
-
-        </div>
-
+        <Recipes />
+      
         <PrefMenu />
         
         </div>

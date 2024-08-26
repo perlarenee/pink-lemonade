@@ -17,6 +17,16 @@ const config: Config = {
           500: '#0070F3',
           600: '#2F6FEB',
         },
+        primary_pink: '#f2bbc9',
+        secondary_pink: '#d9597b',
+        primary_blue: '#6E6AD9',
+        secondary_blue: '#6763BF',
+        primary_peach: '#F28379',
+
+      },
+      transitionProperty: {
+        'height': 'height',
+        'max-height': 'max-height'
       },
     },
     keyframes: {
