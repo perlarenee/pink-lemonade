@@ -34,10 +34,10 @@ const client = await db.connect();
 
    await client.sql`
      CREATE TABLE IF NOT EXISTS refreshments (
-       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
        contributor_id UUID NOT NULL,
-       title NOT NULL,
-       content NOT NULL,
+       title VARCHAR(255) NOT NULL,
+       content VARCHAR(255) NOT NULL,
        image_url VARCHAR(255) NOT NULL,
        status VARCHAR(255) NOT NULL,
        date DATE NOT NULL
@@ -47,7 +47,7 @@ const client = await db.connect();
    const insertedRefreshments = await Promise.all(
     refreshments.map(
        (refreshment) => client.sql`
-         INSERT INTO invoices (contributor_id, title, content, image_url, status, date)
+         INSERT INTO refreshments  (contributor_id, title, content, image_url, status, date)
          VALUES (${refreshment.contributor_id}, ${refreshment.title}, ${refreshment.content}, ${refreshment.image_url},  ${refreshment.status}, ${refreshment.date})
          ON CONFLICT (id) DO NOTHING;
        `,
@@ -72,7 +72,7 @@ const client = await db.connect();
    const insertedContributors = await Promise.all(
     contributors.map(
        (contributor) => client.sql`
-         INSERT INTO contributor (id, name, email, image_url)
+         INSERT INTO contributors (id, name, email, image_url)
          VALUES (${contributor.id}, ${contributor.name}, ${contributor.email}, ${contributor.image_url})
          ON CONFLICT (id) DO NOTHING;
        `,
@@ -86,9 +86,9 @@ const client = await db.connect();
 export async function GET() {
    try {
      await client.sql`BEGIN`;
-     await seedUsers();
-     await seedContributors();
-     await seedRefreshments();
+     //await seedUsers();
+      //await seedContributors();
+     //await seedRefreshments();
      await client.sql`COMMIT`;
 
      return Response.json({ message: 'Database seeded successfully' });

@@ -78,7 +78,7 @@ const refreshments = [
     date: '2022-10-29',
   },
   {
-      contributor_id: contributors[3].id,
+    contributor_id: contributors[3].id,
     id: '410544b2-4001-4271-9855-fec4b6a234n4',
     title: 'Title Lorum Ipsum',
     content: 'Content Lorum Ipsum',
