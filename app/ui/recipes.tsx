@@ -5,6 +5,7 @@ import {
     PlusIcon,
     MinusIcon
 } from '@heroicons/react/24/outline';
+import { PrefMenu } from './buttons';
 
 export default function Recipies(){
 
@@ -12,7 +13,7 @@ export default function Recipies(){
 
     return (
         <>
-        <h2 className="text-xl">Refreshment Selections 
+        <h2 className="text-xl">View/Adjust Recipe
         {!recipe && (
         <PlusIcon 
             className="w-8 inline-block ml-4" 
@@ -69,6 +70,7 @@ export default function Recipies(){
         </li>
         </ul>
 
+        <PrefMenu />
         </div></div>
         </>
     )

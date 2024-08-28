@@ -6,13 +6,18 @@ import Link from "next/link";
 //import {useState} from 'react';
 import {PrefMenu} from '@/app/ui/buttons';
 import Recipes from '@/app/ui/recipes';
+import DataFeed from "./ui/data-feed";
+import { fetchRefreshmentsPages } from "./lib/data";
 
 
 
 
 
 export default function Home() {
-  //const [openMenu,setOpenMenu] = useState(false);
+    const query = '';
+    const currentPage = 1;
+    const totalPages = 2; //await fetchRefreshmentsPages(query);
+
   return (
     <main className="flex min-h-screen flex-col items-center p-16 md:p-24">
 
@@ -40,7 +45,6 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <p className={`${teko.className} `}>By <span className="uppercase">Web Locomotive</span></p>
           </Link>
         </div>
      
@@ -50,14 +54,16 @@ export default function Home() {
        
         <div className="flex flex-col text-center">
         <h2 className={`${inter.className} text-4xl pt-0 pb-8`}>Welcome [name]</h2>
+        <p>[Todays Date]</p>
+        <p>Servings: [], Glasses: [], Refreshments: []</p>
 
         <Recipes />
       
-        <PrefMenu />
+        
         
         </div>
         <div className="flex p-16" >
-          <h2>Data Feed</h2>
+          <DataFeed query={query} currentPage={currentPage} />
         </div>
 
 
