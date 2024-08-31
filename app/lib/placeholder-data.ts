@@ -4,13 +4,13 @@ const users = [
   {
     id: '410544b2-4001-4271-9855-fec4b6a6442a',
     name: 'User1',
-    email: 'user@nextmail.com',
+    email: 'user+1@nextmail.com',
     password: '123456',
   },
   {
     id: '410544b2-4001-4271-9855-fec4b6a6442b',
     name: 'User2',
-    email: 'user@nextmail.com',
+    email: 'user+2@nextmail.com',
     password: '123456',
   },
 ];
@@ -194,31 +194,31 @@ const tags = [
     id: '410544b2-4001-4271-9855-fec4b6a23414',
     slug: 'pink-lemonade',
     name: 'Pink Lemonade',
-    desc: 'A cold, refreshing beverage made of bright yellow lemons, fresh crimson straberries, sliced and crushed with sugar crystals. Served in a chilled glass over ice cubes, droplets of water beading on the outside.'
+    description: 'A cold, refreshing beverage made of bright yellow lemons, fresh crimson straberries, sliced and crushed with sugar crystals. Served in a chilled glass over ice cubes, droplets of water beading on the outside.'
   },
   {
     id: '410544b2-4001-4271-9855-fec4b6a23415',
     slug: 'hot-tea',
     name: 'Hot Tea',
-    desc: 'Deliciously hot and steamy, with a rich, herbal aroma. Served in a large tea cup big enough for you to hold with both hands.'
+    description: 'Deliciously hot and steamy, with a rich, herbal aroma. Served in a large tea cup big enough for you to hold with both hands.'
   },
   {
     id: '410544b2-4001-4271-9855-fec4b6a23415',
     slug: 'lite-beer',
     name: 'Lite Beer',
-    desc: 'Cold and refreshing, but with a bite that creeps up on you, this refreshment is great for sitting out on the porch and watching the sunset after a long, hot, day of work. Served fresh out of the can.'
+    description: 'Cold and refreshing, but with a bite that creeps up on you, this refreshment is great for sitting out on the porch and watching the sunset after a long, hot, day of work. Served fresh out of the can.'
   },
   {
     id: '410544b2-4001-4271-9855-fec4b6a23416',
     slug: 'flavored-latte',
     name: 'Flavored Latte',
-    desc: 'Aromatic, hot and steamy, comfortable, with a kick of caffeine. For days when you need to treat yourself, but still have to get shit done. Served in a to-go cup with a christmas tree on the front, and your name badly spelled.'
+    description: 'Aromatic, hot and steamy, comfortable, with a kick of caffeine. For days when you need to treat yourself, but still have to get shit done. Served in a to-go cup with a christmas tree on the front, and your name badly spelled.'
   },
   {
     id: '410544b2-4001-4271-9855-fec4b6a23417',
     slug: 'capuchino',
     name: 'Capuchiono',
-    desc: 'The perfect refreshment for sitting down with friends in a tiny cafe with people all around, soft natural lighting, and retro pop music playing quietly enough not to disrupt conversations. Served in a beautiful capuchino cup with an elaborate design swirled in the foam on top, and just a tiny bit of cinnamon.'
+    description: 'The perfect refreshment for sitting down with friends in a tiny cafe with people all around, soft natural lighting, and retro pop music playing quietly enough not to disrupt conversations. Served in a beautiful capuchino cup with an elaborate design swirled in the foam on top, and just a tiny bit of cinnamon.'
   }
 
 ]
@@ -226,30 +226,37 @@ const tags = [
 //user selections
 const selections = [
   {
-    user_id:'410544b2-4001-4271-9855-fec4b6a6442a',
+    id:'410544b2-4001-4271-9855-fec4b6a6442a',
     frequency: '2',
-    0: {
-      time: '9:00am',
-      serving: '5m',
-      types: 'pink-lemonade',
-      formats: 'meme, short-stories'
-    },
-    1: {
-      time: '6:00pm',
-      serving: '15m',
-      types: 'capuchino',
-      formats: 'meme, poetry'
-    },
+    instances: [
+      {
+        time: '9:00am',
+        serving: '5m',
+        types: 'pink-lemonade',
+        formats: 'meme, short-stories'
+      },
+      {
+        time: '6:00pm',
+        serving: '15m',
+        types: 'capuchino',
+        formats: 'meme, poetry'
+      },
+    ],
+    
+    
   },
   {
-    user_id:'410544b2-4001-4271-9855-fec4b6a6442b',
+    id:'410544b2-4001-4271-9855-fec4b6a6442b',
     frequency: '1',
-    0: {
-      time: '9:00am',
-      serving: '5m',
-      types: 'hot-tea',
-      formats: 'poetry, short-stories'
-    }
+    instances: [
+      {
+        time: '9:00am',
+        serving: '5m',
+        types: 'hot-tea',
+        formats: 'poetry, short-stories'
+      }
+    ]
+    
   }
 ]
 

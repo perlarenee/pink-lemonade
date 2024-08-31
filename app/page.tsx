@@ -55,7 +55,6 @@ export default function Home() {
         <div className="flex flex-col text-center">
         <h2 className={`${inter.className} text-4xl pt-0 pb-8`}>Welcome [name]</h2>
         <p>[Todays Date]</p>
-        <p>Servings: [], Glasses: [], Refreshments: []</p>
 
         <Recipes />
       

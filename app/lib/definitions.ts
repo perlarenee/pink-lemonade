@@ -18,6 +18,7 @@ export type Refreshment = {
   content: string;
   image_url: string;
   contributor_id: string;
+  tags: string;
   date: string;
   status: 'pending' | 'declined' | 'approved';
 }
@@ -27,6 +28,7 @@ export type LatestRefreshment = {
   content: string;
   image_url: string;
   contributor_id: string;
+  tags: string;
   date: string;
 };
 export type RefreshmentTable = {
@@ -35,6 +37,7 @@ export type RefreshmentTable = {
   content: string;
   image_url: string;
   contributor_id: string;
+  tags: string;
   date: string;
   status: 'pending' | 'declined' | 'approved';
 };
@@ -70,6 +73,7 @@ export type RefreshmentForm = {
   content: string;
   image_url: string;
   contributor_id: string;
+  tags: string;
   date: string;
   status: 'pending' | 'declined' | 'approved';
 };

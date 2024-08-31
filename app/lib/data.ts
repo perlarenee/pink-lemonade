@@ -16,7 +16,7 @@ import {
 export async function fetchLatestRefreshments() {
   try {
     const data = await sql<LatestRefreshment>`
-      SELECT contributors.name, contributors.image_url, contributors.email, refreshments.id, refreshments.title, refreshments.content, refreshments.image_url
+      SELECT contributors.name, contributors.image_url, contributors.email, refreshments.id, refreshments.title, refreshments.content, refreshments.tags, refreshments.image_url
       FROM refreshments
       JOIN contributors ON refreshments.contributor_id = contributors.id
       ORDER BY refreshments.date DESC
@@ -47,6 +47,7 @@ export async function fetchFilteredRefreshments(
         refreshments.title,
         refreshments.content,
         refreshments.image_url,
+        refreshments.tags,
         refreshments.date,
         refreshments.status,
         contributors.name,
@@ -60,6 +61,7 @@ export async function fetchFilteredRefreshments(
         refreshments.title::text ILIKE ${`%${query}%`} OR
         refreshments.content::text ILIKE ${`%${query}%`} OR
         refreshments.image_url::text ILIKE ${`%${query}%`} OR
+        refreshments.tags::text ILIKE ${`%${query}%`} OR
         refreshments.date::text ILIKE ${`%${query}%`} OR
         refreshments.status ILIKE ${`%${query}%`}
       ORDER BY refreshments.date DESC
@@ -84,6 +86,7 @@ export async function fetchRefreshmentsPages(query: string) {
       refreshments.title::text ILIKE ${`%${query}%`} OR
       refreshments.content::text ILIKE ${`%${query}%`} OR
       refreshments.image_url::text ILIKE ${`%${query}%`} OR
+      refreshments.tags::text ILIKE ${`%${query}%`} OR
       refreshments.date::text ILIKE ${`%${query}%`} OR
       refreshments.status ILIKE ${`%${query}%`}
   `;
@@ -106,6 +109,7 @@ export async function fetchRefreshmentById(id: string) {
         refreshments.title,
         refreshments.content,
         refreshments.image_url,
+        refreshments.tags,
         refreshments.status
       FROM refreshments
       WHERE refreshments.id = ${id};
