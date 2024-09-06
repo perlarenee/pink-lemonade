@@ -1,3 +1,7 @@
+import Link from "next/link";
+import Image from "next/image";
+import {inter} from '@/app/ui/fonts';
+
 // Loading animation
 const shimmer =
   'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent';
@@ -82,7 +86,7 @@ export function LatestInvoicesSkeleton() {
   );
 }
 
-export default function DashboardSkeleton() {
+export function DashboardSkeleton() {
   return (
     <>
       <div
@@ -214,5 +218,68 @@ export function InvoicesTableSkeleton() {
         </div>
       </div>
     </div>
+  );
+}
+
+
+export default function MainFeedSkeleton() {
+  return (
+      <div className={`${shimmer} relative flex place-items-center p-16 flex-col m-0 h-screen`}>
+
+          <div
+          className={`relative overflow-hidden rounded-xl bg-gray-100 w-40 mb-4 p-2 shadow-sm`} >
+          <div className="flex items-center justify-center truncate rounded-xl bg-white px-4 py-8">
+          </div>
+        </div>
+
+
+
+        <div className="flex flex-col text-center">
+          <div className="mb-4 h-8 w-36 rounded-md bg-gray-100" />
+          <div className="mb-4 h-8 w-36 rounded-md bg-gray-100" />
+        </div>
+
+        <div className={`relative w-80 overflow-hidden mb-6 md:col-span-4`}>
+          <div className="rounded-xl bg-gray-100 p-4">
+            <div className="mt-0 grid h-[210px] grid-cols-12 items-end gap-2 rounded-md bg-white p-4 sm:grid-cols-13 md:gap-4" />
+            <div className="flex items-center pb-2 pt-6">
+              <div className="h-5 w-5 rounded-full bg-gray-200" />
+              <div className="ml-2 h-4 w-20 rounded-md bg-gray-200" />
+            </div>
+          </div>
+        </div>
+
+        <div className={`relative w-80 overflow-hidden mb-4 md:col-span-4`}>
+          <div className="rounded-xl bg-gray-100 p-4">
+            <div className="mt-0 grid h-[210px] grid-cols-12 items-end gap-2 rounded-md bg-white p-4 sm:grid-cols-13 md:gap-4" />
+            <div className="flex items-center pb-2 pt-6">
+              <div className="h-5 w-5 rounded-full bg-gray-200" />
+              <div className="ml-2 h-4 w-20 rounded-md bg-gray-200" />
+            </div>
+          </div>
+        </div>
+
+
+
+
+       
+
+
+    
+      </div>
+  );
+}
+
+export function DataFeedSkeleton() {
+  return (
+    <div className={`${shimmer} relative w-80 overflow-hidden mb-4 md:col-span-4`}>
+    <div className="rounded-xl bg-gray-100 p-4">
+      <div className="mt-0 grid h-[210px] grid-cols-12 items-end gap-2 rounded-md bg-white p-4 sm:grid-cols-13 md:gap-4" />
+      <div className="flex items-center pb-2 pt-6">
+        <div className="h-5 w-5 rounded-full bg-gray-200" />
+        <div className="ml-2 h-4 w-20 rounded-md bg-gray-200" />
+      </div>
+    </div>
+  </div>
   );
 }

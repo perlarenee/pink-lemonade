@@ -77,3 +77,17 @@ export type RefreshmentForm = {
   date: string;
   status: 'pending' | 'declined' | 'approved';
 };
+
+
+export type Selections = {
+  id:string;
+  frequency: string;
+  instances: string;
+};
+
+export type Instance = {
+  time: string;
+  serving: string;
+  types: string;
+  formats: string;
+}

@@ -14,7 +14,6 @@ export function PrefMenu(){
         >
           Change Selections
         </button>
-        {console.log(prefToggle)}
         </>
     );
 }

@@ -9,6 +9,7 @@ import {
   User,
   Contributor, 
   Refreshment,
+  Selections
 } from './definitions';
 //import { formatCurrency } from './utils';
 
@@ -41,6 +42,7 @@ export async function fetchFilteredRefreshments(
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
+    //await new Promise((resolve) => setTimeout(resolve, 3000));
     const refreshments = await sql<RefreshmentTable>`
       SELECT
         refreshments.id,
@@ -67,7 +69,7 @@ export async function fetchFilteredRefreshments(
       ORDER BY refreshments.date DESC
       LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
     `;
-
+   // console.log('Data fetch completed after 3 seconds.');
     return refreshments.rows;
   } catch (error) {
     console.error('Database Error:', error);
@@ -119,12 +121,37 @@ export async function fetchRefreshmentById(id: string) {
       ...refreshment,
     }));
 
-    console.log(refreshment); // Refreshment is an empty array []
+    //console.log(refreshment); // Refreshment is an empty array []
     return refreshment[0];
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch refreshment.');
   }
+}
+
+export async function fetchSelectionsById(id:string){
+try{
+  const data = await sql<Selections>`
+  SELECT
+    selections.id,
+    selections.frequency,
+    selections.instances
+  FROM selections
+  WHERE selections.id = ${id};
+`;
+
+const selection = data.rows.map((selection)=>({
+  ...selection,
+}));
+
+//console.log(selection);
+return selection[0];
+
+}catch(error){
+  console.error('Database Error:', error);
+  throw new Error('Failed to fetch selection.');
+}
+
 }
 
 export async function fetchContributors() {

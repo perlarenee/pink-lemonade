@@ -19,9 +19,11 @@ const config: Config = {
         },
         primary_pink: '#f2bbc9',
         secondary_pink: '#d9597b',
+        tertiary_pink: '#d3a3af',
         primary_blue: '#6E6AD9',
         secondary_blue: '#6763BF',
         primary_peach: '#F28379',
+        primary_yellow: '#ffff00',
 
       },
       transitionProperty: {
