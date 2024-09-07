@@ -143,7 +143,7 @@ export function TableRowSkeleton() {
   );
 }
 
-export function InvoicesMobileSkeleton() {
+export function LibraryMobileSkeleton() {
   return (
     <div className="mb-2 w-full rounded-md bg-white p-4">
       <div className="flex items-center justify-between border-b border-gray-100 pb-8">
@@ -167,18 +167,18 @@ export function InvoicesMobileSkeleton() {
   );
 }
 
-export function InvoicesTableSkeleton() {
+export function LibraryTableSkeleton() {
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
         <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
           <div className="md:hidden">
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
+            <LibraryMobileSkeleton />
+            <LibraryMobileSkeleton />
+            <LibraryMobileSkeleton />
+            <LibraryMobileSkeleton />
+            <LibraryMobileSkeleton />
+            <LibraryMobileSkeleton />
           </div>
           <table className="hidden min-w-full text-gray-900 md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
@@ -232,8 +232,6 @@ export default function MainFeedSkeleton() {
           </div>
         </div>
 
-
-
         <div className="flex flex-col text-center">
           <div className="mb-4 h-8 w-36 rounded-md bg-gray-100" />
           <div className="mb-4 h-8 w-36 rounded-md bg-gray-100" />
@@ -258,14 +256,6 @@ export default function MainFeedSkeleton() {
             </div>
           </div>
         </div>
-
-
-
-
-       
-
-
-    
       </div>
   );
 }

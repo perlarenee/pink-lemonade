@@ -3,23 +3,18 @@
 import Image from "next/image";
 import {inter, teko} from '@/app/ui/fonts';
 import Link from "next/link";
-//import {useState} from 'react';
 import {PrefMenu} from '@/app/ui/buttons';
 import Selections from '@/app/ui/selections';
 import SelectionsContent from "@/app/ui/selections-content";
-import DataFeed from "../ui/data-feed";
+import DataFeed from "@/app/ui/data-feed";
 import { Suspense } from "react";
-import { fetchRefreshmentsPages } from "../lib/data";
+import { fetchRefreshmentsPages } from "@/app/lib/data";
 import { DataFeedSkeleton } from '@/app/ui/skeletons';
 import Pagination from "@/app/ui/pagination";
 import Search from "@/app/ui/search";
-
-
 import {
   BoltIcon,
 } from '@heroicons/react/24/outline';
-
-
 
 import { Metadata } from 'next';
 

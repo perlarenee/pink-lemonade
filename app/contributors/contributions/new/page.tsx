@@ -1,3 +1,9 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Contributors - New',
+};
+
 export default function NewContribuation(){
     return (
         <>

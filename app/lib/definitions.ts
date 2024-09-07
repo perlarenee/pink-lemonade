@@ -17,10 +17,15 @@ export type Refreshment = {
   title: string;
   content: string;
   image_url: string;
-  contributor_id: string;
   tags: string;
+  format: string;
+  length: string;
   date: string;
   status: 'pending' | 'declined' | 'approved';
+  contributor_id: string;
+  cont_name: string;
+  cont_email: string;
+  cont_image_url: string;
 }
 export type LatestRefreshment = {
   id: string;
@@ -29,18 +34,41 @@ export type LatestRefreshment = {
   image_url: string;
   contributor_id: string;
   tags: string;
+  format: string;
+  length: string;
   date: string;
 };
-export type RefreshmentTable = {
+export type RefreshmentsTable = {
   id: string;
   title: string;
   content: string;
   image_url: string;
-  contributor_id: string;
   tags: string;
+  format: string;
+  length: string;
   date: string;
   status: 'pending' | 'declined' | 'approved';
+  contributor_id: string;
+  cont_name: string;
+  cont_email: string;
+  cont_image_url: string;
 };
+
+export type RefreshmentsContributorsTable ={
+  id: string;
+  title: string;
+  content: string;
+  image_url: string;
+  tags: string;
+  format: string;
+  length: string;
+  date: string;
+  status: 'pending' | 'declined' | 'approved';
+  contributor_id: string;
+  cont_name: string;
+  cont_email: string;
+  cont_image_url: string;
+}
 
 export type ContributorsTableType = {
   id: string;
@@ -58,14 +86,16 @@ export type FormattedContributorsTable = {
   email: string;
   image_url: string;
   total_contributions: number;
-  total_pending: string;
-  total_paid: string;
+  total_pending: number;
+  total_approved: number;
+  total_declined: number;
 };
 
 export type ContributorField = {
   id: string;
   name: string;
 };
+
 
 export type RefreshmentForm = {
   id: string;
@@ -74,6 +104,8 @@ export type RefreshmentForm = {
   image_url: string;
   contributor_id: string;
   tags: string;
+  format: string;
+  length: string;
   date: string;
   status: 'pending' | 'declined' | 'approved';
 };

@@ -41,6 +41,8 @@ const client = await db.connect();
        content TEXT NOT NULL ,
        image_url VARCHAR(255) NOT NULL,
        tags VARCHAR(255) NOT NULL,
+       format VARCHAR(255) NOT NULL,
+       length VARCHAR(255) NOT NULL,
        status VARCHAR(255) NOT NULL,
        date DATE NOT NULL
      );
@@ -49,8 +51,8 @@ const client = await db.connect();
    const insertedRefreshments = await Promise.all(
     refreshments.map(
        (refreshment) => client.sql`
-         INSERT INTO refreshments  (contributor_id, title, content, image_url, tags, status, date)
-         VALUES (${refreshment.contributor_id}, ${refreshment.title}, ${refreshment.content}, ${refreshment.image_url},  ${refreshment.tags}, ${refreshment.status}, ${refreshment.date})
+         INSERT INTO refreshments  (contributor_id, title, content, image_url, tags, format, length, status, date)
+         VALUES (${refreshment.contributor_id}, ${refreshment.title}, ${refreshment.content}, ${refreshment.image_url},  ${refreshment.tags}, ${refreshment.format}, ${refreshment.length}, ${refreshment.status}, ${refreshment.date})
          ON CONFLICT (id) DO NOTHING;
        `,
      ),
@@ -64,19 +66,19 @@ const client = await db.connect();
 
    await client.sql`
      CREATE TABLE IF NOT EXISTS contributors (
-       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-       name VARCHAR(255) NOT NULL,
-       email VARCHAR(255) NOT NULL,
-       image_url VARCHAR(255) NOT NULL
+       cont_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+       cont_name VARCHAR(255) NOT NULL,
+       cont_email VARCHAR(255) NOT NULL,
+       cont_image_url VARCHAR(255) NOT NULL
      );
    `;
 
    const insertedContributors = await Promise.all(
     contributors.map(
        (contributor) => client.sql`
-         INSERT INTO contributors (id, name, email, image_url)
-         VALUES (${contributor.id}, ${contributor.name}, ${contributor.email}, ${contributor.image_url})
-         ON CONFLICT (id) DO NOTHING;
+         INSERT INTO contributors (cont_id, cont_name, cont_email, cont_image_url)
+         VALUES (${contributor.cont_id}, ${contributor.cont_name}, ${contributor.cont_email}, ${contributor.cont_image_url})
+         ON CONFLICT (cont_id) DO NOTHING;
        `,
      ),
    );
@@ -141,7 +143,7 @@ export async function GET() {
    try {
      await client.sql`BEGIN`;
      //await seedUsers();
-      //await seedContributors();
+     // await seedContributors();
     //await seedRefreshments();
     //await seedTags();
       //await seedSelections();
