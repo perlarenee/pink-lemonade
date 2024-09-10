@@ -208,7 +208,7 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
 
         {/* Tags */}
 
-        <fieldset>
+        <fieldset className="mb-4">
           <legend className="mb-2 block text-sm font-medium">
             Select Tags
           </legend>
@@ -300,7 +300,7 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
         {/* Format */}
 
 
-        <fieldset>
+        <fieldset className="mb-4">
           <legend className="mb-2 block text-sm font-medium">
             Select Formats
           </legend>
