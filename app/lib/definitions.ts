@@ -71,31 +71,43 @@ export type RefreshmentsContributorsTable ={
 }
 
 export type ContributorsTableType = {
-  id: string;
-  name: string;
-  email: string;
-  image_url: string;
-  total_contributions: number;
-  total_pending: number;
-  total_paid: number;
+  cont_id: string;
+  cont_name: string;
+  cont_email: string;
+  cont_image_url: string;
+  cont_total_contributions: number;
+  cont_total_pending: number;
+  cont_total_paid: number;
 };
 
 export type FormattedContributorsTable = {
-  id: string;
-  name: string;
-  email: string;
-  image_url: string;
-  total_contributions: number;
-  total_pending: number;
-  total_approved: number;
-  total_declined: number;
+  cont_id: string;
+  cont_name: string;
+  cont_email: string;
+  cont_image_url: string;
+  cont_total_contributions: number;
+  cont_total_pending: number;
+  cont_total_approved: number;
+  cont_total_declined: number;
 };
 
 export type ContributorField = {
-  id: string;
-  name: string;
+  cont_id: string;
+  cont_name: string;
 };
 
+export type TagField = {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+};
+export type FormatField = {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+};
 
 export type RefreshmentForm = {
   id: string;

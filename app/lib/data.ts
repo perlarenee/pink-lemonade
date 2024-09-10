@@ -10,7 +10,9 @@ import {
   Contributor, 
   Refreshment,
   Selections,
-  RefreshmentsContributorsTable
+  RefreshmentsContributorsTable,
+  TagField,
+  FormatField
 } from './definitions';
 //import { formatCurrency } from './utils';
 
@@ -256,10 +258,10 @@ export async function fetchContributors() {
   try {
     const data = await sql<ContributorField>`
       SELECT
-        id,
-        name
+        cont_id,
+        cont_name
       FROM contributors
-      ORDER BY name ASC
+      ORDER BY cont_name ASC
     `;
 
     const contributors = data.rows;
@@ -267,6 +269,46 @@ export async function fetchContributors() {
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch all contributors.');
+  }
+}
+
+export async function fetchTags(){
+  try{
+    const data = await sql<TagField>`
+      SELECT
+        id,
+        slug,
+        name,
+        description
+      FROM tags
+      ORDER BY id ASC
+    `;
+
+    const tags = data.rows;
+    return tags;
+  }catch(error){
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch all tags.');
+  }
+}
+
+export async function fetchFormats(){
+  try{
+    const data = await sql<FormatField>`
+      SELECT
+        id,
+        slug,
+        name,
+        description
+      FROM formats
+      ORDER BY id ASC
+    `;
+
+    const formats = data.rows;
+    return formats;
+  }catch(error){
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch all formats.');
   }
 }
 
@@ -285,7 +327,7 @@ export async function fetchFilteredContributors(query: string) {
 		  contributors.cont_name ILIKE ${`%${query}%`} OR
         contributors.cont_email ILIKE ${`%${query}%`}
 		GROUP BY contributors.cont_id, contributors.cont_name, contributors.cont_email, contributors.cont_image_url
-		ORDER BY contributors.name ASC
+		ORDER BY contributors.cont_name ASC
 	  `;
 
     const contributors = data.rows.map((contributor) => ({

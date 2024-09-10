@@ -249,6 +249,31 @@ const tags = [
 
 ]
 
+//formats
+const formats = [
+  {
+    id: '410544b2-4001-4271-9855-fec4b6a23418',
+    slug: 'meme',
+    name: 'Meme',
+    description: 'A simple, eye catching, image with overlaid text.'
+  },{
+    id: '410544b2-4001-4271-9855-fec4b6a23419',
+    slug: 'poetry',
+    name: 'Poetry',
+    description: 'Literature that evokes a concentrated imaginative awareness of experience or a specific emotional response through language chosen and arranged for its meaning, sound, and rhythm.'
+  },{
+    id: '410544b2-4001-4271-9855-fec4b6a23420',
+    slug: 'short-story',
+    name: 'Short Story',
+    description: 'A short, thought provoking, story.'
+  },{
+    id: '410544b2-4001-4271-9855-fec4b6a23421',
+    slug: 'saying',
+    name: 'Saying',
+    description: 'A brief expression or thought.'
+  }
+]
+
 //user selections
 const selections = [
   {
@@ -288,4 +313,4 @@ const selections = [
 
 
 
-export { users, contributors, refreshments, tags, selections };
+export { users, contributors, refreshments, tags, selections, formats };
