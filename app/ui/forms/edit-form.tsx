@@ -42,32 +42,24 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
     let tagsPre = refreshment.tags.replace(/ /g,"").split(',');
         //if ref is not empty, nodes exist
         if (tagsRef.current != null) {
-
         let tagNodes = tagsRef.current.querySelectorAll('.tag input');
         let tagArr = Array.from(tagNodes);
-
             //map through array of nodes, compare with tag from preset tags. If the node has an id matching an incoming tag, set checkbox
             tagArr.map((tag,index) => {
                 key:index;
-
-            if(tagsPre.indexOf(tag.id) >= 0){
-                (tag as HTMLInputElement).checked=true;
-            }
-
-            //set value to state taglist if state is empty
-            if(tagsList.length === 0){
-                const isFound = tagsList.some(newTag => {
-                    return newTag === tag;
-                })
-
-                if(!isFound){
-                    setTagsList(tagsPre);
-                }           
-
-            }
-
+                if(tagsPre.indexOf(tag.id) >= 0){
+                    (tag as HTMLInputElement).checked=true;
+                }
+                //set value to state taglist if state is empty
+                if(tagsList.length === 0){
+                    const isFound = tagsList.some(newTag => {
+                        return newTag === tag;
+                    })
+                    if(!isFound){
+                        setTagsList(tagsPre);
+                    }           
+                }
             })
-
         }
 
         //FORMAT
@@ -75,39 +67,31 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
 
         //if ref is not empty, nodes exist
         if (formatsRef.current != null) {
-
-            let formatNodes = formatsRef.current.querySelectorAll('.format input');
-            let formatArr = Array.from(formatNodes);
-
-                //map through array of nodes, compare with format from preset formats. If the node has an id matching an incoming format, set checkbox
-                formatArr.map((format,index) => {
-                    key:index;
+        let formatNodes = formatsRef.current.querySelectorAll('.format input');
+        let formatArr = Array.from(formatNodes);
+            //map through array of nodes, compare with format from preset formats. If the node has an id matching an incoming format, set checkbox
+            formatArr.map((format,index) => {
+                key:index;
                 if(formatsPre.indexOf(format.id) >= 0){
                     (format as HTMLInputElement).checked=true;
                 }
-
                 //set value to state formatlist if state is empty
                 if(formatsList.length === 0){
                     const isFound = formatsList.some(newFormat => {
                         return newFormat === format.id;
                     })
-
                     if(!isFound){
                         setFormatsList(formatsPre);
                     }           
-
                 }
-
-                })
-
-            }
+            })
+        }
     }
 
 
   //handle tag clicks
   function handleTags(event:any,tag:object){
     let newValue = event.target.value;
-    console.log('tags event');
 
     if(event.target.checked){
 
@@ -470,6 +454,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
                   value="pending"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                   aria-describedby="status_error"
+                  defaultChecked={refreshment.status === 'pending'}
                 />
                 <label
                   htmlFor="pending"
@@ -486,6 +471,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
                   value="approved"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                   aria-describedby="status_error"
+                  defaultChecked={refreshment.status === 'approved'}
                 />
                 <label
                   htmlFor="approved"
@@ -496,15 +482,16 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
               </div>
               <div className="flex items-center">
                 <input
-                  id="rejected"
+                  id="declined"
                   name="status"
                   type="radio"
-                  value="rejected"
+                  value="declined"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                   aria-describedby="status_error"
+                  defaultChecked={refreshment.status === 'declined'}
                 />
                 <label
-                  htmlFor="rejected"
+                  htmlFor="declined"
                   className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-red-500 px-3 py-1.5 text-xs font-medium text-white"
                 >
                   Rejected <XMarkIcon className="h-4 w-4" />

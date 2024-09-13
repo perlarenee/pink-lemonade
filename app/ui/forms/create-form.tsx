@@ -399,15 +399,15 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
               </div>
               <div className="flex items-center">
                 <input
-                  id="rejected"
+                  id="declined"
                   name="status"
                   type="radio"
-                  value="rejected"
+                  value="declined"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                   aria-describedby="status_error"
                 />
                 <label
-                  htmlFor="rejected"
+                  htmlFor="declined"
                   className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-red-500 px-3 py-1.5 text-xs font-medium text-white"
                 >
                   Rejected <XMarkIcon className="h-4 w-4" />

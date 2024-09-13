@@ -14,22 +14,7 @@ export default async function RefreshmentsTable({
   currentPage: number;
 }) {
   const refreshments = await fetchFilteredRefreshments(query, currentPage);
-  console.log(refreshments);
-{/* 
-  refreshments.id,
-        refreshments.title,
-        refreshments.content,
-        refreshments.image_url,
-        refreshments.tags,
-        refreshments.format, 
-        refreshments.length, 
-        refreshments.date,
-        refreshments.contributor_id,
-        refreshments.status,
-        contributors.cont_name,
-        contributors.cont_email,
-        contributors.cont_image_url
-  */}
+
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
