@@ -9,12 +9,15 @@ export const metadata: Metadata = {
 };
 
 export default async function NewContributions() {
-  const contributors = await fetchContributors();
-  const tags = await fetchTags();
-  const formats = await fetchFormats();
+
+  const [contributors, tags, formats] = await Promise.all([
+    fetchContributors(),
+    fetchTags(),
+    fetchFormats()
+  ])
  
   return (
-    <main className="p-16">
+    <main className="p-16 mb-16">
       <Breadcrumbs
         breadcrumbs={[
           { label: 'Contributions', href: '/contributors/contributions' },

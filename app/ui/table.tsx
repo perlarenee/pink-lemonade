@@ -1,9 +1,10 @@
 import Image from 'next/image';
-//import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
+//import {UpdateRefreshmentButton, DeleteInvoice } from '@/app/ui/invoices/buttons';
 //import InvoiceStatus from '@/app/ui/invoices/status';
 import { formatDateToLocal} from '@/app/lib/utils';
 import { fetchFilteredRefreshments,fetchContributorById } from '@/app/lib/data';
-import { refreshments } from '../lib/placeholder-data';
+//import { refreshments } from '../lib/placeholder-data';
+import { UpdateRefreshmentButton, CreateRefreshmentButton, DeleteRefreshmentButton } from '@/app/ui/buttons';
 
 export default async function RefreshmentsTable({
   query,
@@ -59,10 +60,12 @@ export default async function RefreshmentsTable({
                   <div>
                     <p>{formatDateToLocal(ref.date)}</p>
                   </div>
-                  {/*<div className="flex justify-end gap-2">
-                    <UpdateInvoice id={invoice.id} />
-                    <DeleteInvoice id={invoice.id} />
-                  </div>*/}
+                 
+                  {/*  <DeleteRefreshmentButton id={invoice.id} />  */}
+                  <div className="flex justify-end gap-2">
+                  <UpdateRefreshmentButton id={ref.id} />
+                  </div>
+
                 </div>
               </div>
             ))}
@@ -137,10 +140,10 @@ export default async function RefreshmentsTable({
                   {/*<InvoiceStatus status={invoice.status} />*/}
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                    {/*<div className="flex justify-end gap-3">
-                      <UpdateInvoice id={invoice.id} />
-                      <DeleteInvoice id={invoice.id} />
-                    </div>*/}
+                    {/* <DeleteInvoice id={invoice.id} />*/}
+                    <div className="flex justify-end gap-2"> 
+                    <UpdateRefreshmentButton id={ref.id} />
+                    </div>
                   </td>
                 </tr>
               ))}

@@ -229,22 +229,34 @@ const tags = [
     description: 'Deliciously hot and steamy, with a rich, herbal aroma. Served in a large tea cup big enough for you to hold with both hands.'
   },
   {
-    id: '410544b2-4001-4271-9855-fec4b6a23415',
+    id: '410544b2-4001-4271-9855-fec4b6a23416',
     slug: 'lite-beer',
     name: 'Lite Beer',
     description: 'Cold and refreshing, but with a bite that creeps up on you, this refreshment is great for sitting out on the porch and watching the sunset after a long, hot, day of work. Served fresh out of the can.'
   },
   {
-    id: '410544b2-4001-4271-9855-fec4b6a23416',
+    id: '410544b2-4001-4271-9855-fec4b6a23417',
     slug: 'flavored-latte',
     name: 'Flavored Latte',
     description: 'Aromatic, hot and steamy, comfortable, with a kick of caffeine. For days when you need to treat yourself, but still have to get shit done. Served in a to-go cup with a christmas tree on the front, and your name badly spelled.'
   },
   {
-    id: '410544b2-4001-4271-9855-fec4b6a23417',
+    id: '410544b2-4001-4271-9855-fec4b6a23418',
     slug: 'capuchino',
     name: 'Capuchiono',
     description: 'The perfect refreshment for sitting down with friends in a tiny cafe with people all around, soft natural lighting, and retro pop music playing quietly enough not to disrupt conversations. Served in a beautiful capuchino cup with an elaborate design swirled in the foam on top, and just a tiny bit of cinnamon.'
+  },
+  {
+    id: '410544b2-4001-4271-9855-fec4b6a23419',
+    slug: 'vodka',
+    name: 'Vodka',
+    description: 'Stiff and bitter, a shot of vodka is just the thing to warm you up on a cold night.'
+  },
+  {
+    id: '410544b2-4001-4271-9855-fec4b6a23420',
+    slug: 'dark-beer',
+    name: 'Dark Beer',
+    description: 'More sophisticated, or at least it looks that way, a good dark beer is rich and creamy and puts you in a meditative mood.'
   }
 
 ]

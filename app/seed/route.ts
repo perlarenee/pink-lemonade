@@ -170,9 +170,9 @@ export async function GET() {
      //await seedUsers();
      // await seedContributors();
     //await seedRefreshments();
-    await seedTags();
+    //await seedTags();
       //await seedSelections();
-      await seedFormats();
+      //await seedFormats();
      await client.sql`COMMIT`;
 
      return Response.json({ message: 'Database seeded successfully' });
