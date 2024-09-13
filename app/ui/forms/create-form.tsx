@@ -216,9 +216,9 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
             <div className="flex gap-4">
 
 
-            {tags.map((tag) => (
+            {tags.map((tag, index) => (
 
-                <div className="flex items-center">
+                <div className="flex items-center" key={index}>
                 <input
                 id={tag.slug}
                 name={tag.slug}
@@ -308,9 +308,9 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
             <div className="flex gap-4">
 
 
-            {formats.map((format) => (
+            {formats.map((format, index) => (
 
-                <div className="flex items-center">
+                <div className="flex items-center" key={index}>
                 <input
                 id={format.slug}
                 name={format.slug}

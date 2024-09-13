@@ -48,6 +48,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
 
             //map through array of nodes, compare with tag from preset tags. If the node has an id matching an incoming tag, set checkbox
             tagArr.map((tag,index) => {
+                key:index;
 
             if(tagsPre.indexOf(tag.id) >= 0){
                 (tag as HTMLInputElement).checked=true;
@@ -80,7 +81,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
 
                 //map through array of nodes, compare with format from preset formats. If the node has an id matching an incoming format, set checkbox
                 formatArr.map((format,index) => {
-
+                    key:index;
                 if(formatsPre.indexOf(format.id) >= 0){
                     (format as HTMLInputElement).checked=true;
                 }
@@ -307,7 +308,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
 
             {tags.map((tag, index) => (
 
-                <div className="tag flex items-center">
+                <div className="tag flex items-center" key={index}>
                 <input
                 id={tag.slug}
                 name={tag.slug}
@@ -404,7 +405,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
 
             {formats.map((format, index) => (
 
-                <div className="format flex items-center">
+                <div className="format flex items-center" key={index}>
                 <input
                 id={format.slug}
                 name={format.slug}
