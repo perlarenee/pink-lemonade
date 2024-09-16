@@ -23,8 +23,8 @@ export default async function DataFeed({
                         <div>{ref.content}</div>
                         <div><Image
                             src={ref.image_url}
-                            width="300"
-                            height="300"
+                            width={500}
+                            height={500}
                             alt={ref.image_url}
                         /></div>
                         <p>Status: {ref.status}</p>

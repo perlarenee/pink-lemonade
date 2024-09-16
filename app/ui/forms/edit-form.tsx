@@ -15,14 +15,15 @@ import {
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
 import { useActionState, useEffect, useState, useRef, createRef } from 'react';
-import { createRefreshment, State} from '@/app/lib/actions';
+import { State, updateRefreshment} from '@/app/lib/actions';
 import { object } from 'zod';
 
 
 export default function Form({refreshment, contributors, tags, formats }: {refreshment:RefreshmentForm, contributors: ContributorField[] ,tags: TagField[] , formats:FormatField[]}) {
   
   const initialState: State = {message: null,errors: {}};
-  const [state, formAction] = useActionState(createRefreshment, initialState);
+  const updateRefreshmentWithId = updateRefreshment.bind(null, refreshment.id);
+  const [state, formAction] = useActionState(updateRefreshmentWithId, initialState);
   const [tagsList, setTagsList] = useState<any[]>([]);
   const [formatsList, setFormatsList] = useState<string[]>([]);
   const tagsRef = useRef<HTMLInputElement>(null); 
@@ -248,9 +249,41 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
             </div>
         </div>
 
+
+ {/* File Upload*/}
+ <div className="mb-4">
+            <label htmlFor="image_url" className="mb-2 block text-sm font-medium">
+                Upload your file
+            </label>
+            <div className="relative mt-2 rounded-md">
+                <div className="relative">
+                    <input 
+                        id="image_url"
+                        name="image_url"
+                        type="file"
+                        placeholder="Your image_url here"
+                        className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                        aria-describedby="image_url_error"
+                        //ref={inputFileRef}
+                    />
+                    <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"  />
+                </div>
+
+                <div id="image_url-error" aria-live="polite" aria-atomic="true">
+                  {state.errors?.image_url && 
+                    state.errors.image_url.map((error: string) => (
+                    <p className="mt-2 text-sm text-red-500" key={error}>
+                        {error}
+                    </p>
+                    ))}
+                </div>
+
+            </div>
+        </div>
+
         {/* Image url */}
 
-        <div className="mb-4">
+        {/*<div className="mb-4">
             <label htmlFor="image_url" className="mb-2 block text-sm font-medium">
                 Place your Image URL
             </label>
@@ -278,7 +311,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
                 </div>
 
             </div>
-        </div>
+        </div>*/}
 
         {/* Tags */}
 
@@ -336,10 +369,9 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
             name="tags"
             type="text"
             placeholder="tags combined field"
-            className=" peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+            className="hidden peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
             aria-describedby="tags_error"
             value={tagsList}
-            //defaultValue={refreshment.tags}
             readOnly
         />
 
@@ -431,10 +463,9 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
             name="formats"
             type="text"
             placeholder="formats combined field"
-            className="  peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+            className="hidden  peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
             aria-describedby="formats_error"
             value={formatsList}
-            //defaultValue={refreshment.formats}
             readOnly
         />
 
@@ -499,12 +530,12 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
               </div>
 
               <div id="status-error" aria-live="polite" aria-atomic="true">
-                {/*state.errors?.status && 
+                {state.errors?.status && 
                 state.errors.status.map((error: string) => (
                   <p className="mt-2 text-sm text-red-500" key={error}>
                     {error}
                   </p>
-                ))*/}
+                ))}
               </div>
 
             </div>

@@ -30,6 +30,6 @@
     ".next/types/**/*.ts",
     "app/lib/placeholder-data.ts",
     "scripts/seed.js"
-, "app/ui/dashboard/sidenav.tsx.bkup", "app/seed/route.ts"  ],
+, "app/ui/dashboard/sidenav.tsx.bkup", "app/seed/route.ts.bkup"  ],
   "exclude": ["node_modules"]
 }

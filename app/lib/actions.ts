@@ -4,6 +4,7 @@ import {z} from 'zod';
 import {sql} from '@vercel/postgres';
 import {revalidatePath} from 'next/cache';
 import {redirect} from 'next/navigation';
+import { put } from '@vercel/blob';
 
 const FormSchema = z.object({
     id: z.string(),
@@ -12,7 +13,7 @@ const FormSchema = z.object({
     }),
     title: z.string(),
     content: z.string(),
-    image_url: z.string(),
+    image_url: z.any(),
     tags: z.string(),
     formats: z.string(),
     length: z.string(),
@@ -29,7 +30,7 @@ export type State = {
         contributor?: string[];
         title?: string[];
         content?: string[];
-        image_url?: string[];
+        image_url?: any[];
         tags?: string[];
         formats?: string[];
         length?: string[];
@@ -46,7 +47,7 @@ export async function createRefreshment(prevState: State, formData: FormData) {
         contributor: formData.get('contributor'),
         title: formData.get('title'),
         content: formData.get('content'),
-        image_url: formData.get('image_url'),
+        image_url: formData.get('image_url') as File,
         tags: formData.get('tags'),
         formats: formData.get('formats'),
         length: formData.get('length'),
@@ -62,16 +63,22 @@ export async function createRefreshment(prevState: State, formData: FormData) {
     };
   }
 
+
+    
   // Prepare data for insertion into the database
   const {contributor, title, content, image_url, tags, formats, length, status} = validatedFields.data;
-  //const amountInCents = amount * 100;
   const date = new Date().toISOString().split('T')[0];
+  const blob = await put(image_url.name, image_url, {
+      access: 'public',
+    });
+
+    console.log('blob results:',blob)
 
   //insert data into database
   try {
     await sql `
     INSERT INTO refreshments (contributor_id, title, content, image_url, tags, format, length, status, date)
-    VALUES (${contributor}, ${title}, ${content}, ${image_url}, ${tags}, ${formats}, ${length}, ${status}, ${date})
+    VALUES (${contributor}, ${title}, ${content}, ${blob.url}, ${tags}, ${formats}, ${length}, ${status}, ${date})
     `;
   }catch(error){
     //if a database error occurs, return a more specific error
@@ -93,7 +100,7 @@ export async function updateRefreshment(id: string, prevState: State, formData: 
         contributor: formData.get('contributor'),
         title: formData.get('title'),
         content: formData.get('content'),
-        image_url: formData.get('image_url'),
+        image_url: formData.get('image_url') as File,
         tags: formData.get('tags'),
         formats: formData.get('formats'),
         length: formData.get('length'),
@@ -110,12 +117,15 @@ export async function updateRefreshment(id: string, prevState: State, formData: 
 
     // Prepare data for insertion into the database
     const {contributor, title, content, image_url, tags, formats, length, status} = validatedFields.data;
+    const blob = await put(image_url.name, image_url, {
+        access: 'public',
+      });
 
     //insert data into database
     try{
         await sql `
         UPDATE refreshments
-        SET contributor_id = ${contributor}, title = ${title}, content = ${content}, image_url = ${image_url}, tags = ${tags}, format = ${formats}, length = ${length}, status = ${status}
+        SET contributor_id = ${contributor}, title = ${title}, content = ${content}, image_url = ${blob.url}, tags = ${tags}, format = ${formats}, length = ${length}, status = ${status}
         WHERE id = ${id}
         `;
     } catch (error){
@@ -244,3 +254,25 @@ export async function createRefreshment(prevState: State, formData: FormData) {
       throw error;
     }
   }*/
+
+    export async function DeleteRefreshment(id: string){
+        //throw new Error('Failed to Delete Refreshment');
+    
+    
+        try{
+            await sql `
+            DELETE FROM refreshments WHERE id = ${id}
+            `;
+            //revalidate the cache for the location page and redirect the user
+            revalidatePath('/contributors/contributions');
+            //redirect('/contributors/contributions');
+            return {
+                message: 'Deleted Refreshment.',
+            }
+        } catch(error){
+            return {
+                message: 'Database Error: Failed to Delete Refreshment.',
+            }
+        }
+        
+    }

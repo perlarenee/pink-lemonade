@@ -5,6 +5,7 @@ import { fetchRefreshmentsPages } from "@/app/lib/data";
 import { LibraryTableSkeleton, DataFeedSkeleton } from '@/app/ui/skeletons';
 import Pagination from "@/app/ui/pagination";
 import Search from "@/app/ui/search";
+import { CreateRefreshmentButton } from '@/app/ui/buttons';
 import RefreshmentsTable from "@/app/ui/table";
 
 import { Metadata } from 'next';
@@ -35,7 +36,7 @@ export default async function AdminLibrary({
             </div>
             <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
                 <Search placeholder="Search refreshements..." />
-                {/* <CreateInvoice /> */}
+                 <CreateRefreshmentButton /> 
             </div>
 
                 <Suspense key={query + currentPage} fallback={<LibraryTableSkeleton />}>

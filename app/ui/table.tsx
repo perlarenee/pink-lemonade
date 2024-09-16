@@ -1,6 +1,7 @@
 import Image from 'next/image';
 //import {UpdateRefreshmentButton, DeleteInvoice } from '@/app/ui/invoices/buttons';
 //import InvoiceStatus from '@/app/ui/invoices/status';
+import RefreshmentStatus from '@/app/ui/status';
 import { formatDateToLocal} from '@/app/lib/utils';
 import { fetchFilteredRefreshments,fetchContributorById } from '@/app/lib/data';
 //import { refreshments } from '../lib/placeholder-data';
@@ -49,6 +50,7 @@ export default async function RefreshmentsTable({
                   {/*  <DeleteRefreshmentButton id={invoice.id} />  */}
                   <div className="flex justify-end gap-2">
                   <UpdateRefreshmentButton id={ref.id} />
+                  <DeleteRefreshmentButton id={ref.id} />
                   </div>
 
                 </div>
@@ -109,7 +111,7 @@ export default async function RefreshmentsTable({
                   <div className="flex items-center gap-3">
                       <Image
                         src={ref.image_url}
-                        className="rounded-full"
+                        className=""
                         width={28}
                         height={28}
                         alt={`${ref.title}`}
@@ -122,10 +124,10 @@ export default async function RefreshmentsTable({
                   {formatDateToLocal(ref.date)}
                   </td>
                   <td>
-                  {/*<InvoiceStatus status={invoice.status} />*/}
+                  <RefreshmentStatus status={ref.status} />
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                    {/* <DeleteInvoice id={invoice.id} />*/}
+                    <DeleteRefreshmentButton id={ref.id} />
                     <div className="flex justify-end gap-2"> 
                     <UpdateRefreshmentButton id={ref.id} />
                     </div>
