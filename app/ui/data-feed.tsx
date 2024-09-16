@@ -20,7 +20,7 @@ export default async function DataFeed({
                 refreshments?.map((ref, index) => (
                     <div key={index} className="col-span-12 gap-4 p-4 bg-slate-50 border-solid border-red-500 m-4">
                         <h2>{ref.title}</h2>
-                        <div>{ref.content}</div>
+                        <div dangerouslySetInnerHTML={{__html: ref.content}}/>
                         <div><Image
                             src={ref.image_url}
                             width={500}

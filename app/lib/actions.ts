@@ -12,7 +12,7 @@ const FormSchema = z.object({
         invalid_type_error: "Please select a contributor.",
     }),
     title: z.string(),
-    content: z.string(),
+    content: z.any(),
     image_url: z.any(),
     tags: z.string(),
     formats: z.string(),
@@ -29,7 +29,7 @@ export type State = {
     errors?: {
         contributor?: string[];
         title?: string[];
-        content?: string[];
+        content?: any[];
         image_url?: any[];
         tags?: string[];
         formats?: string[];

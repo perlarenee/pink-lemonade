@@ -1,3 +1,5 @@
+import { HtmlContext } from "next/dist/server/route-modules/pages/vendored/contexts/entrypoints";
+
 export type User = {
   id: string;
   name: string;
@@ -15,7 +17,7 @@ export type Contributor = {
 export type Refreshment = {
   id: string;
   title: string;
-  content: string;
+  content: any;
   image_url: string;
   tags: string;
   format: string;
@@ -30,7 +32,7 @@ export type Refreshment = {
 export type LatestRefreshment = {
   id: string;
   title: string;
-  content: string;
+  content: any;
   image_url: string;
   contributor_id: string;
   tags: string;
@@ -41,7 +43,7 @@ export type LatestRefreshment = {
 export type RefreshmentsTable = {
   id: string;
   title: string;
-  content: string;
+  content: any;
   image_url: string;
   tags: string;
   format: string;
@@ -57,7 +59,7 @@ export type RefreshmentsTable = {
 export type RefreshmentsContributorsTable ={
   id: string;
   title: string;
-  content: string;
+  content: any;
   image_url: string;
   tags: string;
   format: string;
@@ -112,7 +114,7 @@ export type FormatField = {
 export type RefreshmentForm = {
   id: string;
   title: string;
-  content: string;
+  content: any;
   image_url: string;
   contributor_id: string;
   tags: string;

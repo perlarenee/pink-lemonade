@@ -29,25 +29,38 @@ export default async function RefreshmentsTable({
                 <div className="flex items-center justify-between border-b pb-4">
                   <div>
                     <div className="mb-2 flex items-center">
-                      <Image
-                        src={ref.image_url}
+                    <Image
+                        src={ref.cont_image_url}
                         className="mr-2 rounded-full"
                         width={28}
                         height={28}
+                        alt={`${ref.cont_name}`}
+                      />
+                      <p>{ref.cont_name}</p>
+                      
+                      </div>
+                      <div className="mb-2 flex items-center">
+
+                      <Image
+                        src={ref.image_url}
+                        className="mr-2"
+                        width={150}
+                        height={150}
                         alt={`${ref.title}`}
                       />
+                       </div>
+                       <div className="mb-2 flex items-center">
                       <p>{ref.title}</p>
                     </div>
-                    <p className="text-sm text-gray-500">{ref.title}</p>
+                    <div  className="text-sm text-gray-500"  dangerouslySetInnerHTML={{__html: ref.content}}/>
                   </div>
-                  {/*<InvoiceStatus status={invoice.status} />*/}
+                  <RefreshmentStatus status={ref.status} />
                 </div>
                 <div className="flex w-full items-center justify-between pt-4">
                   <div>
                     <p>{formatDateToLocal(ref.date)}</p>
                   </div>
                  
-                  {/*  <DeleteRefreshmentButton id={invoice.id} />  */}
                   <div className="flex justify-end gap-2">
                   <UpdateRefreshmentButton id={ref.id} />
                   <DeleteRefreshmentButton id={ref.id} />
@@ -117,7 +130,7 @@ export default async function RefreshmentsTable({
                         alt={`${ref.title}`}
                       />
                       <p>{ref.title}</p>
-                      <p>{ref.content}</p>
+                      {ref.content}
                     </div>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
