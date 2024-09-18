@@ -15,7 +15,7 @@ export default async function DataFeed({
         <>
        
 
-        <div className="flex grid grid-cols-12 gap-1">
+        <div className="flex grid grid-cols-12 gap-1 allowStyles">
         {
                 refreshments?.map((ref, index) => (
                     <div key={index} className="col-span-12 gap-4 p-4 bg-slate-50 border-solid border-red-500 m-4">
@@ -26,6 +26,7 @@ export default async function DataFeed({
                             width={500}
                             height={500}
                             alt={ref.image_url}
+                            className="w-full h-auto "
                         /></div>
                         <p>Status: {ref.status}</p>
                         <p>Tags: {ref.tags}</p>

@@ -41,6 +41,7 @@ export type State = {
 
 
 export async function createRefreshment(prevState: State, formData: FormData) {
+  console.log('formData',formData)
 //console.log('hi');
     //validate using Zod
   const validatedFields = CreateRefreshment.safeParse({

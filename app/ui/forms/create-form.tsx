@@ -16,7 +16,8 @@ import {
 import { Button } from '@/app/ui/button';
 import { useActionState, useEffect, useState , useRef} from 'react';
 import { createRefreshment, State} from '@/app/lib/actions';
-import type { PutBlobResult } from '@vercel/blob';
+
+import FroalaEditorField from '@/app/ui/editor';
 
 export default function Form({ contributors, tags, formats }: { contributors: ContributorField[] ,tags: TagField[] , formats:FormatField[]}) {
   
@@ -24,6 +25,7 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
   const [state, formAction] = useActionState(createRefreshment, initialState);
   const [tagsList, setTagsList] = useState<string[]>([]);
   const [formatsList, setFormatsList] = useState<string[]>([]);
+  const [textareaContent, setTextareaContent] = useState('');
 
   //image upload const
   //const inputFileRef = useRef<HTMLInputElement>(null);
@@ -155,15 +157,21 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
             </label>
             <div className="relative mt-2 rounded-md">
                 <div className="relative">
+                
+                <FroalaEditorField textareaContent={textareaContent} setTextareaContent={setTextareaContent}/>
+                
                     <textarea 
                         id="content"
                         name="content"
                         placeholder="Your content here"
-                        className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                        className="hidden peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                         aria-describedby="content_error"
                         rows={4} cols={40}
+                        value={textareaContent}
+                        readOnly
                     />
-                    <PencilSquareIcon className="pointer-events-none absolute left-3 top-5 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"  />
+                    
+                    {/*<PencilSquareIcon className="pointer-events-none absolute left-3 top-5 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"  />*/}
                 </div>
 
                 <div id="content-error" aria-live="polite" aria-atomic="true">
@@ -192,7 +200,6 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
                         placeholder="Your image_url here"
                         className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                         aria-describedby="image_url_error"
-                        //ref={inputFileRef}
                     />
                     <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"  />
                 </div>

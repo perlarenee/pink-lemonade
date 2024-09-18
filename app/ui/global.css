@@ -48,3 +48,10 @@ input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+/* froala */
+.fr-box ol,.fr-box ul, .fr-box menu, .allowStyles ol, .allowStyles ul, .allowStyles menu {
+  list-style: inherit;
+  margin: inherit;
+  padding: inherit;
+}

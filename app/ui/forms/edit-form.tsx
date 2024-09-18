@@ -17,6 +17,7 @@ import { Button } from '@/app/ui/button';
 import { useActionState, useEffect, useState, useRef, createRef } from 'react';
 import { State, updateRefreshment} from '@/app/lib/actions';
 import { object } from 'zod';
+import FroalaEditorField from '@/app/ui/editor';
 
 
 export default function Form({refreshment, contributors, tags, formats }: {refreshment:RefreshmentForm, contributors: ContributorField[] ,tags: TagField[] , formats:FormatField[]}) {
@@ -29,7 +30,8 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
   const tagsRef = useRef<HTMLInputElement>(null); 
   const formatsRef = useRef<HTMLInputElement>(null); 
   const statusRef = useRef<HTMLInputElement>(null); 
-    
+  const [textareaContent, setTextareaContent] = useState(refreshment.content);
+  
     //after page load, set preloaded checkboxes and radio buttons
     useEffect(() => { 
        loadDataOnlyOnce(); 
@@ -225,16 +227,17 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
             </label>
             <div className="relative mt-2 rounded-md">
                 <div className="relative">
+                <FroalaEditorField textareaContent={textareaContent} setTextareaContent={setTextareaContent}/>
                     <textarea 
                         id="content"
                         name="content"
                         placeholder="Your content here"
-                        className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                        className="hidden peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                         aria-describedby="content_error"
                         rows={4} cols={40}
-                        defaultValue={refreshment.content}
+                        value={textareaContent}
+                        readOnly
                     />
-                    <PencilSquareIcon className="pointer-events-none absolute left-3 top-5 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"  />
                 </div>
 
                 <div id="content-error" aria-live="polite" aria-atomic="true">
