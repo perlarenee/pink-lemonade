@@ -31,7 +31,7 @@ const adminLinks = [
         name: 'CONTROL PANEL', href: '/admin', icon: UserIcon
     },
     {
-        name: 'LIBRARY', href: '/admin/library', icon: UserIcon
+        name: 'LIBRARY', href: '/library', icon: UserIcon
     },
     
 ]
