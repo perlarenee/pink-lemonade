@@ -11,12 +11,24 @@ const FormSchema = z.object({
     contributor: z.string({
         invalid_type_error: "Please select a contributor.",
     }),
-    title: z.string(),
-    content: z.any(),
-    image_url: z.any(),
-    tags: z.string(),
-    formats: z.string(),
-    length: z.string(),
+    title: z.string({
+      invalid_type_error: "Please input a title",
+  }),
+    content: z.string({
+      invalid_type_error: "Please describe your contribution.",
+  }),
+    image_url: z.any({
+      invalid_type_error: "Please select an image.",
+  }),
+    tags: z.string({
+      invalid_type_error: "Please select at least one tag.",
+  }),
+    formats: z.string({
+      invalid_type_error: "Please select at least one format.",
+  }),
+    length: z.string({
+      invalid_type_error: "Please estimate how long it would take an average person to enjoy your contribution.",
+  }),
     status: z.enum(['pending','declined','approved'],{
         invalid_type_error: "Please select an refreshment status."
     }),
@@ -73,7 +85,8 @@ export async function createRefreshment(prevState: State, formData: FormData) {
       access: 'public',
     });
 
-    console.log('blob results:',blob)
+    console.log('blob results:',blob);
+    console.log('image_url:',image_url)
 
   //insert data into database
   try {
@@ -141,120 +154,6 @@ export async function updateRefreshment(id: string, prevState: State, formData: 
     redirect('/contributors/contributions');
 
 }
-
-/*
-
-
-
-export async function updateRefreshment(id: string, prevState: State, formData: FormData){
-    
-    //validate using Zod
-    const validatedFields = UpdateRefreshment.safeParse({
-        contributorId: formData.get('contributorId'),
-        title: formData.get('title'),
-        content: formData.get('content'),
-        image_url: formData.get('image_url'),
-        tags: formData.get('tags'),
-        format: formData.get('format'),
-        length: formData.get('length'),
-        status: formData.get('status'),
-    });
-
-    //if form validation fails, return errors early. Otherwise continue
-    if(!validatedFields.success){
-        return {
-            errors: validatedFields.error.flatten().fieldErrors,
-            message: 'Missing fields. Failed to update refreshment.',
-        };
-    }
-
-    // Prepare data for insertion into the database
-    const { contributorId, title, content, image_url, tags, format, length, status } = validatedFields.data;
-    //const amountInCents = amount * 100;
-
-    //insert data into database
-    try{
-        await sql `
-        UPDATE refreshments
-        SET contributor_id = ${contributorId}, title = ${title}, content = ${content}, image_url = ${image_url}, tags = ${tags}, format = ${format}, length = ${length}, status = ${status}
-        WHERE id = ${id}
-        `;
-    } catch (error){
-        //if a database error occurs, return a more specific error
-        return {
-            message: 'Database Error: Failed to Update Refreshment.',
-        }
-    }
-   
-    //revalidate the cache for the location page and redirect the user
-    revalidatePath('/contributors/contributions');
-    redirect('/contributors/contributions');
-}
-
-export async function createRefreshment(prevState: State, formData: FormData) {
-
-    //validate using Zod
-  const validatedFields = CreateRefreshment.safeParse({
-    contributorId: formData.get('contributorId'),
-        title: formData.get('title'),
-        content: formData.get('content'),
-        image_url: formData.get('image_url'),
-        tags: formData.get('tags'),
-        format: formData.get('format'),
-        length: formData.get('length'),
-        status: formData.get('status'),
-  });
-  
-
-  //if form validation fails, return errors early. Otherwise continue
-  if(!validatedFields.success){
-    return {
-        errors: validatedFields.error.flatten().fieldErrors,
-        message: 'Missing fields. Failed to create refreshment.',
-    };
-  }
-
-  // Prepare data for insertion into the database
-  const {contributorId, title, content, image_url, tags, format, length, status} = validatedFields.data;
-  //const amountInCents = amount * 100;
-  const date = new Date().toISOString().split('T')[0];
-
-  //insert data into database
-  try {
-    await sql `
-    INSERT INTO refreshments (contributor_id, title, content, image_url, tags, format, length, status, date)
-    VALUES (${contributorId}, ${title}, ${content}, ${image_url}, ${tags}, ${format}, ${length}, ${status}, ${date})
-    `;
-  }catch(error){
-    //if a database error occurs, return a more specific error
-    return {
-        message: 'Database Error: Failed to Create Refreshment.',
-    };
-  }
-  
-    //revalidate the cache for the location page and redirect the user
-    revalidatePath('/contributors/contributions');
-    redirect('/contributors/contributions');
-}*/
-
-/*export async function authenticate(
-    prevState: string | undefined,
-    formData: FormData,
-  ) {
-    try {
-      await signIn('credentials', formData);
-    } catch (error) {
-      if (error instanceof AuthError) {
-        switch (error.type) {
-          case 'CredentialsSignin':
-            return 'Invalid credentials.';
-          default:
-            return 'Something went wrong.';
-        }
-      }
-      throw error;
-    }
-  }*/
 
     export async function DeleteRefreshment(id: string){
         //throw new Error('Failed to Delete Refreshment');

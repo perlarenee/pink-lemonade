@@ -5,7 +5,6 @@ import Link from 'next/link';
 import {
   CheckIcon,
   ClockIcon,
-  CurrencyDollarIcon,
   UserCircleIcon,
   XMarkIcon,
   PencilSquareIcon,
@@ -27,12 +26,9 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
   const [formatsList, setFormatsList] = useState<string[]>([]);
   const [textareaContent, setTextareaContent] = useState('');
 
-  //image upload const
-  //const inputFileRef = useRef<HTMLInputElement>(null);
-
   //handle tag clicks
-  function handleTags(event:any,tag:object){
-    let newValue = event.target.value;
+  function handleTags(event:any){
+    const newValue = event.target.value;
 
     if(event.target.checked){
 
@@ -56,8 +52,8 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
   }
 
   //handle formats clicks
-  function handleFormats(event:any,format:object){
-    let newValue = event.target.value;
+  function handleFormats(event:any){
+    const newValue = event.target.value;
 
     if(event.target.checked){
 
@@ -265,7 +261,7 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
                 name={tag.slug}
                 type="checkbox"
                 value={tag.slug}
-                onClick={(event) => handleTags(event, tag)} 
+                onClick={(event) => handleTags(event)} 
                 className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                 aria-describedby={`${tag.slug}_error`}
                 />
@@ -357,7 +353,7 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
                 name={format.slug}
                 type="checkbox"
                 value={format.slug}
-                onClick={(event) => handleFormats(event, format)} 
+                onClick={(event) => handleFormats(event)} 
                 className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                 aria-describedby={`${format.slug}_error`}
                 />

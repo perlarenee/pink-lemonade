@@ -55,3 +55,6 @@ input[type='number']::-webkit-outer-spin-button {
   margin: inherit;
   padding: inherit;
 }
+.fr-wrapper.show-placeholder > div:first-child > a[href='https://www.froala.com/wysiwyg-editor?k=u']{
+  display: none !important;
+}

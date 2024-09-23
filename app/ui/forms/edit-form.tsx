@@ -5,7 +5,6 @@ import Link from 'next/link';
 import {
   CheckIcon,
   ClockIcon,
-  CurrencyDollarIcon,
   UserCircleIcon,
   XMarkIcon,
   PencilSquareIcon,
@@ -42,11 +41,11 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
 
 
     //TAGS
-    let tagsPre = refreshment.tags.replace(/ /g,"").split(',');
+    const tagsPre = refreshment.tags.replace(/ /g,"").split(',');
         //if ref is not empty, nodes exist
         if (tagsRef.current != null) {
-        let tagNodes = tagsRef.current.querySelectorAll('.tag input');
-        let tagArr = Array.from(tagNodes);
+        const tagNodes = tagsRef.current.querySelectorAll('.tag input');
+        const tagArr = Array.from(tagNodes);
             //map through array of nodes, compare with tag from preset tags. If the node has an id matching an incoming tag, set checkbox
             tagArr.map((tag,index) => {
                 key:index;
@@ -66,12 +65,12 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
         }
 
         //FORMAT
-        let formatsPre = refreshment.format.replace(/ /g,"").split(',');
+        const formatsPre = refreshment.format.replace(/ /g,"").split(',');
 
         //if ref is not empty, nodes exist
         if (formatsRef.current != null) {
-        let formatNodes = formatsRef.current.querySelectorAll('.format input');
-        let formatArr = Array.from(formatNodes);
+        const formatNodes = formatsRef.current.querySelectorAll('.format input');
+        const formatArr = Array.from(formatNodes);
             //map through array of nodes, compare with format from preset formats. If the node has an id matching an incoming format, set checkbox
             formatArr.map((format,index) => {
                 key:index;
@@ -93,8 +92,8 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
 
 
   //handle tag clicks
-  function handleTags(event:any,tag:object){
-    let newValue = event.target.value;
+  function handleTags(event:any){
+    const newValue = event.target.value;
 
     if(event.target.checked){
 
@@ -121,8 +120,8 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
   
 
   //handle formats clicks
-  function handleFormats(event:any,format:object){
-    let newValue = event.target.value;
+  function handleFormats(event:any){
+    const newValue = event.target.value;
 
     if(event.target.checked){
 
@@ -335,7 +334,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
                 key={index}
                 type="checkbox"
                 value={tag.slug}
-                onClick={(event) => handleTags(event, tag)} 
+                onClick={(event) => handleTags(event)} 
                 className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                 aria-describedby={`${tag.slug}_error`}
                 />
@@ -431,7 +430,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
                 type="checkbox"
                 value={format.slug}
                 key={index}
-                onClick={(event) => handleFormats(event, format)} 
+                onClick={(event) => handleFormats(event)} 
                 className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                 aria-describedby={`${format.slug}_error`}
                 />
