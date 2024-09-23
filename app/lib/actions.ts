@@ -5,35 +5,38 @@ import {sql} from '@vercel/postgres';
 import {revalidatePath} from 'next/cache';
 import {redirect} from 'next/navigation';
 import { put } from '@vercel/blob';
+const MAX_FILE_SIZE = 500000;
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+
 
 const FormSchema = z.object({
     id: z.string(),
     contributor: z.string({
         invalid_type_error: "Please select a contributor.",
     }),
-    title: z.string({
-      invalid_type_error: "Please input a title",
-  }),
-    content: z.string({
-      invalid_type_error: "Please describe your contribution.",
-  }),
-    image_url: z.any({
-      invalid_type_error: "Please select an image.",
-  }),
-    tags: z.string({
-      invalid_type_error: "Please select at least one tag.",
-  }),
-    formats: z.string({
-      invalid_type_error: "Please select at least one format.",
-  }),
-    length: z.string({
-      invalid_type_error: "Please estimate how long it would take an average person to enjoy your contribution.",
-  }),
-    status: z.enum(['pending','declined','approved'],{
-        invalid_type_error: "Please select an refreshment status."
+    title: z.string()
+    .min(1, { message: "Please input a title" }),
+      content: z.string({
+        invalid_type_error: "Please describe your contribution.",
     }),
-    date: z.string(),
-});
+      image_url: z
+      .any()
+      .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 5MB.`)
+      .refine(
+        (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+        "Only .jpg, .jpeg, .png and .webp formats are supported."
+      ),
+      tags: z.string()
+      .min(1, { message: "Please select at least one tag." }),
+      formats: z.string()
+      .min(1, { message: "Please select at least one format." }),
+      length: z.string()
+      .min(1, { message: "Please estimate how long it would take an average person to enjoy your contribution." }),
+      status: z.enum(['pending','declined','approved'],{
+          invalid_type_error: "Please select an refreshment status."
+      }),
+      date: z.string(),
+  });
 
 const CreateRefreshment = FormSchema.omit({ id: true, date: true });
 

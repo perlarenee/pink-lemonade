@@ -200,7 +200,7 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
                     <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"  />
                 </div>
 
-                <div id="image_url-error" aria-live="polite" aria-atomic="true">
+                <div id="image-url-error" aria-live="polite" aria-atomic="true">
                  {state.errors?.image_url && 
                     state.errors.image_url.map((error: string) => (
                     <p className="mt-2 text-sm text-red-500" key={error}>
@@ -276,6 +276,10 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
               ))}
 
 
+           
+
+
+            </div>
             <div id="tags-error" aria-live="polite" aria-atomic="true">
                 {state.errors?.tags && 
                 state.errors.tags.map((error: string) => (
@@ -283,9 +287,6 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
                     {error}
                 </p>
                 ))}
-            </div>
-
-
             </div>
           </div>
         </fieldset>
@@ -368,6 +369,10 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
               ))}
 
 
+           
+
+
+            </div>
             <div id="formats-error" aria-live="polite" aria-atomic="true">
                 {state.errors?.formats && 
                 state.errors.formats.map((error: string) => (
@@ -375,9 +380,6 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
                     {error}
                 </p>
                 ))}
-            </div>
-
-
             </div>
           </div>
         </fieldset>
@@ -450,18 +452,15 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
                   Rejected <XMarkIcon className="h-4 w-4" />
                 </label>
               </div>
-
-              <div id="status-error" aria-live="polite" aria-atomic="true">
-                {/*state.errors?.status && 
+            </div>
+            <div id="status-error" aria-live="polite" aria-atomic="true">
+                {state.errors?.status && 
                 state.errors.status.map((error: string) => (
                   <p className="mt-2 text-sm text-red-500" key={error}>
                     {error}
                   </p>
-                ))*/}
+                ))}
               </div>
-
-
-            </div>
           </div>
         </fieldset>
       </div>
