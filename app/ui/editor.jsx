@@ -51,6 +51,7 @@ export default function FroalaEditorField (props){
   };
   const config = {
     heightMin:100,
+    attribution: false,
     listAdvancedTypes: true,
     pluginsEnabled: [
         'align',
