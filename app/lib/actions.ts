@@ -10,15 +10,14 @@ const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/web
 
 
 const FormSchema = z.object({
-    id: z.string(),
-    contributor: z.string({
-        invalid_type_error: "Please select a contributor.",
-    }),
-    title: z.string()
-    .min(1, { message: "Please input a title" }),
-      content: z.string({
-        invalid_type_error: "Please describe your contribution.",
-    }),
+      id: z.string(),
+      contributor: z.string({
+          invalid_type_error: "Please select a contributor.",
+      }),
+      title: z.string()
+      .min(1, { message: "Please input a title" }),
+      content: z.string()
+      .min(1, { message: "Please describe your contribution" }),
       image_url: z
       .any()
       .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 5MB.`)
@@ -55,8 +54,12 @@ export type State = {
 }
 
 
+
 export async function createRefreshment(prevState: State, formData: FormData) {
   console.log('formData',formData)
+
+  //console.log('prevState:',prevState);
+  
 //console.log('hi');
     //validate using Zod
   const validatedFields = CreateRefreshment.safeParse({
@@ -73,6 +76,7 @@ export async function createRefreshment(prevState: State, formData: FormData) {
 
   //if form validation fails, return errors early. Otherwise continue
   if(!validatedFields.success){
+    console.log('return error');
     return {
         errors: validatedFields.error.flatten().fieldErrors,
         message: 'Missing fields. Failed to create refreshment.',

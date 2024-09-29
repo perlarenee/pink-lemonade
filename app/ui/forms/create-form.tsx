@@ -13,10 +13,13 @@ import {
   FunnelIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
-import { useActionState, useEffect, useState , useRef} from 'react';
+import { useActionState, useState} from 'react';
 import { createRefreshment, State} from '@/app/lib/actions';
 
-import FroalaEditorField from '@/app/ui/editor';
+import dynamic from 'next/dynamic';
+const CustomEditorField = dynamic(() => import('@/app/ui/editor'),{ ssr: false });
+
+//import CustomEditorField from '@/app/ui/editor';
 
 export default function Form({ contributors, tags, formats }: { contributors: ContributorField[] ,tags: TagField[] , formats:FormatField[]}) {
   
@@ -154,13 +157,13 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
             <div className="relative mt-2 rounded-md">
                 <div className="relative">
                 
-                <FroalaEditorField textareaContent={textareaContent} setTextareaContent={setTextareaContent}/>
+                  <CustomEditorField textareaContent={textareaContent} setTextareaContent={setTextareaContent}/>
                 
                     <textarea 
                         id="content"
                         name="content"
                         placeholder="Your content here"
-                        className="hidden peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                        className=" peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                         aria-describedby="content_error"
                         rows={4} cols={40}
                         value={textareaContent}
@@ -213,7 +216,7 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
         </div>
 
         {/* Image url */}
-
+ 
        {/*<div className="mb-4">
             <label htmlFor="image_url" className="mb-2 block text-sm font-medium">
                 Place your Image URL
@@ -452,6 +455,7 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
                   Rejected <XMarkIcon className="h-4 w-4" />
                 </label>
               </div>
+
             </div>
             <div id="status-error" aria-live="polite" aria-atomic="true">
                 {state.errors?.status && 

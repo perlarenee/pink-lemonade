@@ -16,7 +16,7 @@ import { Button } from '@/app/ui/button';
 import { useActionState, useEffect, useState, useRef, createRef } from 'react';
 import { State, updateRefreshment} from '@/app/lib/actions';
 import { object } from 'zod';
-import FroalaEditorField from '@/app/ui/editor';
+import CustomEditorField from '@/app/ui/editor';
 
 
 export default function Form({refreshment, contributors, tags, formats }: {refreshment:RefreshmentForm, contributors: ContributorField[] ,tags: TagField[] , formats:FormatField[]}) {
@@ -226,7 +226,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
             </label>
             <div className="relative mt-2 rounded-md">
                 <div className="relative">
-                <FroalaEditorField textareaContent={textareaContent} setTextareaContent={setTextareaContent}/>
+                <CustomEditorField textareaContent={textareaContent} setTextareaContent={setTextareaContent}/>
                     <textarea 
                         id="content"
                         name="content"

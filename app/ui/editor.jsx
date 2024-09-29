@@ -1,31 +1,35 @@
 'use client';
 
-//import "froala-editor/js/plugins.pkgd.min.js";
-//import 'froala-editor/js/plugins.pkgd.min.js';
-//import 'froala-editor/js/plugins.pkgd.min.js';
-//import 'froala-editor/css/plugins.pkgd.min.css';
-import {revalidatePath} from 'next/cache';
-//import 'froala-editor/js/froala_editor.pkgd.min.js';
-import 'froala-editor/css/froala_editor.pkgd.min.css';
-import 'froala-editor/css/froala_style.min.css';
-import 'froala-editor/css/plugins/code_view.min.css';
-import 'froala-editor/css/plugins/char_counter.min.css';
-import 'froala-editor/css/plugins/fullscreen.min.css';
+import React, { useState, useRef, useEffect } from "react";
 
-//import 'froala-editor/js/plugins/lists.min.js';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
 
+import {
+	ClassicEditor,
+	AccessibilityHelp,
+	Alignment,
+	Autosave,
+	BlockQuote,
+	Bold,
+	Essentials,
+	GeneralHtmlSupport,
+	Heading,
+	HorizontalLine,
+	Indent,
+	IndentBlock,
+	Italic,
+	List,
+	ListProperties,
+	Paragraph,
+	RemoveFormat,
+	SelectAll,
+	SourceEditing,
+	Underline,
+	Undo
+} from 'ckeditor5';
+//import '@/node_modules/ckeditor5/dist/ckeditor5.css';
 
-import React, { useState } from "react";
-import dynamic from 'next/dynamic';
-
-//import FroalaEditorComponent from 'react-froala-wysiwyg';
-//const FroalaEditorComponent = dynamic(() => import('react-froala-wysiwyg'),{ ssr: false });
-//dynamic( () => import('froala-editor/js/plugins.pkgd.min.js'),{ ssr: false });
-//dynamic( () => import('froala-editor/js/froala_editor.pkgd.min.js'), { ssr: false });
-//dynamic( () => import('froala-editor/js/plugins/fullscreen.min.js'), { ssr: false });
-
-
-const FroalaEditor = dynamic(
+/*const FroalaEditor = dynamic(
     async () => {
       const packages = await Promise.all([
         import("react-froala-wysiwyg"),
@@ -41,45 +45,155 @@ const FroalaEditor = dynamic(
       return packages[0];
     },
     { ssr: false }
-  );
-  
+  );*/
 
-export default function FroalaEditorField (props){
-  const [model, setModel] = useState(props.textareaContent);
-  const handleModelChange = (event) => {
-      setModel(event);
-  };
-  const config = {
-    heightMin:100,
-    attribution: false, 
-    listAdvancedTypes: true,
-    pluginsEnabled: [
-        'align',
-        'codeView',
-        'fullscreen',
-        'charCounter',
-        'aviary', 'image', 'fontFamily', 'fontSize', 'help', 'colors', 'paragraphStyle', 'align', 'lists', 'outdent', 'indent', 'paragraphFormat', 'specialCharacters', 'hr', 'clearFormatting', 'link', 'embedly', 'file', 'table', 'undo', 'redo', 'spellchecker'
-    ],
-   //toolbarButtons: ['paragraphFormat', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|',  'align', 'formatOL', 'formatUL', 'outdent', 'indent',  'clearFormatting', '|',  'undo', 'redo','fullscreen', 'html'],
-   // toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'help', 'html', '|', 'undo', 'redo','trackChanges','markdown','fullscreen', ],
-    events : {
-      'contentChanged' : function() {
-        props.setTextareaContent(this.html.get());
-      },
-     }
-  };
+export default function CustomEditorField (props){
 
+const editorContainerRef = useRef(null);
+	const editorRef = useRef(null);
+	const [isLayoutReady, setIsLayoutReady] = useState(false);
+
+	useEffect(() => {
+		setIsLayoutReady(true);
+
+		return () => setIsLayoutReady(false);
+	}, []);
+
+	const editorConfig = {
+		toolbar: {
+			items: [
+				'undo',
+				'redo',
+				'|',
+				'sourceEditing',
+				'|',
+				'heading',
+				'|',
+				'bold',
+				'italic',
+				'underline',
+				'removeFormat',
+				'|',
+				'horizontalLine',
+				'blockQuote',
+				'|',
+				'alignment',
+				'|',
+				'bulletedList',
+				'numberedList',
+				'outdent',
+				'indent'
+			],
+			shouldNotGroupWhenFull: false
+		},
+		plugins: [
+			AccessibilityHelp,
+			Alignment,
+			Autosave,
+			BlockQuote,
+			Bold,
+			Essentials,
+			GeneralHtmlSupport,
+			Heading,
+			HorizontalLine,
+			Indent,
+			IndentBlock,
+			Italic,
+			List,
+			ListProperties,
+			Paragraph,
+			RemoveFormat,
+			SelectAll,
+			SourceEditing,
+			Underline,
+			Undo
+		],
+		heading: {
+			options: [
+				{
+					model: 'paragraph',
+					title: 'Paragraph',
+					class: 'ck-heading_paragraph'
+				},
+				{
+					model: 'heading1',
+					view: 'h1',
+					title: 'Heading 1',
+					class: 'ck-heading_heading1'
+				},
+				{
+					model: 'heading2',
+					view: 'h2',
+					title: 'Heading 2',
+					class: 'ck-heading_heading2'
+				},
+				{
+					model: 'heading3',
+					view: 'h3',
+					title: 'Heading 3',
+					class: 'ck-heading_heading3'
+				},
+				{
+					model: 'heading4',
+					view: 'h4',
+					title: 'Heading 4',
+					class: 'ck-heading_heading4'
+				},
+				{
+					model: 'heading5',
+					view: 'h5',
+					title: 'Heading 5',
+					class: 'ck-heading_heading5'
+				},
+				{
+					model: 'heading6',
+					view: 'h6',
+					title: 'Heading 6',
+					class: 'ck-heading_heading6'
+				}
+			]
+		},
+		htmlSupport: {
+			allow: [
+				{
+					name: /^.*$/,
+					styles: true,
+					attributes: true,
+					classes: true
+				}
+			]
+		},
+		initialData:
+			"",
+		list: {
+			properties: {
+				styles: true,
+				startIndex: true,
+				reversed: true
+			}
+		},
+		placeholder: 'Your content here!'
+	};
+
+  const inputHandler = (event, editor) => {
+    //console.log(editor.getData());
+    props.setTextareaContent(editor.getData());
+  };
 
     return (
-        <FroalaEditor 
-        tag='textarea' 
-        config={config}
-        model={model}
-        onModelChange={handleModelChange}
-        />
+      <>
+        <div className="main-container">
+          <div className="editor-container editor-container_classic-editor" ref={editorContainerRef}>
+            <div className="editor-container__editor">
+              <div ref={editorRef}>{isLayoutReady && <CKEditor 
+              id="customEditor"
+              editor={ClassicEditor} 
+              config={editorConfig} 
+              onChange={inputHandler} 
+              />}</div>
+            </div>
+          </div>
+        </div>
+      </>
     );
-
-
-    
-    
   }
