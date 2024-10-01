@@ -1,4 +1,4 @@
-import Form from '@/app/ui/forms/create-form';
+import CreateForm from '@/app/ui/forms/create-form';
 import Breadcrumbs from '@/app/ui/breadcrumbs';
 import { fetchContributors, fetchTags, fetchFormats } from '@/app/lib/data';
 
@@ -28,7 +28,7 @@ export default async function NewContributions() {
           },
         ]}
       />
-      <Form contributors={contributors} tags={tags} formats={formats} />
+      <CreateForm contributors={contributors} tags={tags} formats={formats} />
     </main>
   );
 }

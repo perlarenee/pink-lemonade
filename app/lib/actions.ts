@@ -56,12 +56,7 @@ export type State = {
 
 
 export async function createRefreshment(prevState: State, formData: FormData) {
-  console.log('formData',formData)
-
-  //console.log('prevState:',prevState);
   
-//console.log('hi');
-    //validate using Zod
   const validatedFields = CreateRefreshment.safeParse({
         contributor: formData.get('contributor'),
         title: formData.get('title'),
@@ -76,15 +71,14 @@ export async function createRefreshment(prevState: State, formData: FormData) {
 
   //if form validation fails, return errors early. Otherwise continue
   if(!validatedFields.success){
-    console.log('return error');
+
     return {
         errors: validatedFields.error.flatten().fieldErrors,
         message: 'Missing fields. Failed to create refreshment.',
     };
+
   }
 
-
-    
   // Prepare data for insertion into the database
   const {contributor, title, content, image_url, tags, formats, length, status} = validatedFields.data;
   const date = new Date().toISOString().split('T')[0];

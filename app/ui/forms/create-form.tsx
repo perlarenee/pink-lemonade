@@ -19,11 +19,9 @@ import { createRefreshment, State} from '@/app/lib/actions';
 import dynamic from 'next/dynamic';
 const CustomEditorField = dynamic(() => import('@/app/ui/editor'),{ ssr: false });
 
-//import CustomEditorField from '@/app/ui/editor';
-
-export default function Form({ contributors, tags, formats }: { contributors: ContributorField[] ,tags: TagField[] , formats:FormatField[]}) {
+export default function CreateForm({ contributors, tags, formats }: { contributors: ContributorField[] ,tags: TagField[] , formats:FormatField[]}) {
   
-  const initialState: State = {message: null,errors: {}};
+  const initialState: State = {message: null,errors: {}}
   const [state, formAction] = useActionState(createRefreshment, initialState);
   const [tagsList, setTagsList] = useState<string[]>([]);
   const [formatsList, setFormatsList] = useState<string[]>([]);
@@ -80,7 +78,8 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
   }
 
   return (
-    <form action={formAction}>
+    
+    <form action={formAction} >
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Contributor Name */}
         <div className="mb-4">
@@ -169,8 +168,7 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
                         value={textareaContent}
                         readOnly
                     />
-                    
-                    {/*<PencilSquareIcon className="pointer-events-none absolute left-3 top-5 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"  />*/}
+                  
                 </div>
 
                 <div id="content-error" aria-live="polite" aria-atomic="true">
@@ -215,37 +213,6 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
             </div>
         </div>
 
-        {/* Image url */}
- 
-       {/*<div className="mb-4">
-            <label htmlFor="image_url" className="mb-2 block text-sm font-medium">
-                Place your Image URL
-            </label>
-            <div className="relative mt-2 rounded-md">
-                <div className="relative">
-                    <input 
-                        id="image_url"
-                        name="image_url"
-                        type="text"
-                        placeholder="Your image_url here"
-                        className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                        aria-describedby="image_url_error"
-                    />
-                    <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"  />
-                </div>
-
-                <div id="image_url-error" aria-live="polite" aria-atomic="true">
-                    {state.errors?.image_url && 
-                    state.errors.image_url.map((error: string) => (
-                    <p className="mt-2 text-sm text-red-500" key={error}>
-                        {error}
-                    </p>
-                    ))}
-                </div>
-
-            </div>
-        </div>*/}
-
         {/* Tags */}
 
         <fieldset className="mb-4">
@@ -277,9 +244,6 @@ export default function Form({ contributors, tags, formats }: { contributors: Co
                 </div>
 
               ))}
-
-
-           
 
 
             </div>

@@ -1,4 +1,4 @@
-import Form from '@/app/ui/forms/edit-form';
+import EditForm from '@/app/ui/forms/edit-form';
 import Breadcrumbs from '@/app/ui/breadcrumbs';
 import {notFound} from 'next/navigation';
 import { fetchContributors, fetchTags, fetchFormats, fetchRefreshmentById } from '@/app/lib/data';
@@ -34,7 +34,7 @@ export default async function EditContributions({ params }: { params: { id: stri
           },
         ]}
       />
-      <Form refreshment={refreshment} contributors={contributors} tags={tags} formats={formats} />
+      <EditForm refreshment={refreshment} contributors={contributors} tags={tags} formats={formats} />
     </main>
     )
 }
