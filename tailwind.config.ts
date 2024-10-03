@@ -28,7 +28,9 @@ const config: Config = {
       },
       transitionProperty: {
         'height': 'height',
-        'max-height': 'max-height'
+        'max-height': 'max-height',
+        'width': 'width',
+        'max-width':'max-width'
       },
     },
     keyframes: {

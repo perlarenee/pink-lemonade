@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contributors - Apply',
+  title: 'Profile - Contributions',
 };
 
-export default function Apply(){
+export default function Contributions(){
     return (
         <>
-        <h1>Apply to become a contributor</h1>
+        <h1>My Contributions</h1>
         </>
     )
 }

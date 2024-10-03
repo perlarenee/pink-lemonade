@@ -53,8 +53,6 @@ export type State = {
     message?: string | null;
 }
 
-
-
 export async function createRefreshment(prevState: State, formData: FormData) {
   
   const validatedFields = CreateRefreshment.safeParse({
@@ -86,8 +84,8 @@ export async function createRefreshment(prevState: State, formData: FormData) {
       access: 'public',
     });
 
-    console.log('blob results:',blob);
-    console.log('image_url:',image_url)
+    //console.log('blob results:',blob);
+    //console.log('image_url:',image_url)
 
   //insert data into database
   try {
@@ -103,8 +101,8 @@ export async function createRefreshment(prevState: State, formData: FormData) {
   }
   
     //revalidate the cache for the location page and redirect the user
-    revalidatePath('/contributors/contributions');
-    redirect('/contributors/contributions');
+    revalidatePath('/profile/contributions');
+    redirect('/profile/contributions');
 }
 
 export async function updateRefreshment(id: string, prevState: State, formData: FormData){
@@ -151,8 +149,8 @@ export async function updateRefreshment(id: string, prevState: State, formData: 
     }
 
     //revalidate the cache for the location page and redirect the user
-    revalidatePath('/contributors/contributions');
-    redirect('/contributors/contributions');
+    revalidatePath('/profile/contributions');
+    redirect('/profile/contributions');
 
 }
 

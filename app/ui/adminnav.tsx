@@ -17,14 +17,8 @@ export default function AdminNav(){
             </Link>
             */}
 
-            <div className="flex w-full justify-center  items-center flex-row gap-5">
+            <div className="flex w-full justify-center  items-center flex-row gap-2">
                 <AdminLinks />
-                <form>
-                    <button className="flex flex-row gap-2 justify-center items-center">
-                        <PowerIcon className="w-6" />
-                        <div className="hidden md:block">Sign Out</div>
-                    </button>
-                </form>
             </div>
         </div>
     )

@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contributors - Contributions',
+  title: 'Profile - Selections',
 };
 
-export default function Contributions(){
+export default function Selections(){
     return (
         <>
-        <h1>My contributions</h1>
+        <h1>Change my selections</h1>
         </>
     )
 }

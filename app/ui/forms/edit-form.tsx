@@ -15,9 +15,10 @@ import {
 import { Button } from '@/app/ui/button';
 import { useActionState, useEffect, useState, useRef, createRef } from 'react';
 import { State, updateRefreshment} from '@/app/lib/actions';
-import { object } from 'zod';
-import CustomEditorField from '@/app/ui/editor';
+//import { object } from 'zod';
 
+import dynamic from 'next/dynamic';
+const CustomEditorField = dynamic(() => import('@/app/ui/editor'),{ ssr: false });
 
 export default function Form({refreshment, contributors, tags, formats }: {refreshment:RefreshmentForm, contributors: ContributorField[] ,tags: TagField[] , formats:FormatField[]}) {
   
@@ -266,7 +267,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
                         placeholder="Your image_url here"
                         className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                         aria-describedby="image_url_error"
-                        //ref={inputFileRef}
+                        //value={imageUrl}//do this later. for now, they can select a new image when editing
                     />
                     <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"  />
                 </div>
@@ -282,38 +283,6 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
 
             </div>
         </div>
-
-        {/* Image url */}
-
-        {/*<div className="mb-4">
-            <label htmlFor="image_url" className="mb-2 block text-sm font-medium">
-                Place your Image URL
-            </label>
-            <div className="relative mt-2 rounded-md">
-                <div className="relative">
-                    <input 
-                        id="image_url"
-                        name="image_url"
-                        type="text"
-                        placeholder="Your image_url here"
-                        className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                        aria-describedby="image_url_error"
-                        defaultValue={refreshment.image_url}
-                    />
-                    <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"  />
-                </div>
-
-                <div id="image_url-error" aria-live="polite" aria-atomic="true">
-                    {state.errors?.image_url && 
-                    state.errors.image_url.map((error: string) => (
-                    <p className="mt-2 text-sm text-red-500" key={error}>
-                        {error}
-                    </p>
-                    ))}
-                </div>
-
-            </div>
-        </div>*/}
 
         {/* Tags */}
 
@@ -546,7 +515,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link
-          href="/contributors/contributions"
+          href="/profile/contributions"
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
         >
           Cancel

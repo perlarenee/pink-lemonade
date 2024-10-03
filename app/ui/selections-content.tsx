@@ -11,7 +11,7 @@ export default async function SelectionsContent(){
         <>
             {
             instances?.map((instance:Instance,index:number)=>(
-                <div key={`serving-${index+1}`}>
+                <div key={index}>
                     <h2 className="py-4">Serving: {`${index+1}`}</h2>
 
                     <ul key={`serving-${index+1}_list`} role="list" className="list-disc list-outside pl-4">

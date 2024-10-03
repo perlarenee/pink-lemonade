@@ -27,25 +27,6 @@ import {
 	Underline,
 	Undo
 } from 'ckeditor5';
-//import '@/node_modules/ckeditor5/dist/ckeditor5.css';
-
-/*const FroalaEditor = dynamic(
-    async () => {
-      const packages = await Promise.all([
-        import("react-froala-wysiwyg"),
-        import("froala-editor/js/froala_editor.pkgd.min.js"),
-        import("froala-editor/js/plugins/align.min.js"),
-        import("froala-editor/js/plugins/paragraph_format.min.js"),
-        import("froala-editor/js/plugins/lists.min.js"),
-        import("froala-editor/js/plugins/code_view.min.js"),
-        import("froala-editor/js/plugins/char_counter.min.js"),
-        import("froala-editor/js/plugins/fullscreen.min.js"),
-      ]);
-  
-      return packages[0];
-    },
-    { ssr: false }
-  );*/
 
 export default function CustomEditorField (props){
 
@@ -55,7 +36,6 @@ const editorContainerRef = useRef(null);
 
 	useEffect(() => {
 		setIsLayoutReady(true);
-
 		return () => setIsLayoutReady(false);
 	}, []);
 
@@ -164,7 +144,7 @@ const editorContainerRef = useRef(null);
 			]
 		},
 		initialData:
-			"",
+    props.textareaContent,
 		list: {
 			properties: {
 				styles: true,

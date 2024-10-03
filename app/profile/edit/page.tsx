@@ -1,3 +1,9 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Profile - Edit',
+};
+
 export default function EditProfile(){
     return (
         <>
