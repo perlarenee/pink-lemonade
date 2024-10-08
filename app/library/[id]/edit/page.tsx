@@ -26,10 +26,10 @@ export default async function EditContributions({ params }: { params: { id: stri
     <main className="p-16 mb-16">
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Contributions', href: '/contributors/contributions' },
+          { label: 'Library', href: '/library' },
           {
             label: 'Edit Refreshment',
-            href: `/contributors/contributions/${id}/edit`,
+            href: `/library/${id}/edit`,
             active: true,
           },
         ]}

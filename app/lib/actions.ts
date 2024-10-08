@@ -53,6 +53,8 @@ export type State = {
     message?: string | null;
 }
 
+
+
 export async function createRefreshment(prevState: State, formData: FormData) {
   
   const validatedFields = CreateRefreshment.safeParse({
@@ -83,9 +85,6 @@ export async function createRefreshment(prevState: State, formData: FormData) {
   const blob = await put(image_url.name, image_url, {
       access: 'public',
     });
-
-    //console.log('blob results:',blob);
-    //console.log('image_url:',image_url)
 
   //insert data into database
   try {
@@ -120,6 +119,7 @@ export async function updateRefreshment(id: string, prevState: State, formData: 
         status: formData.get('status'),
     });
 
+   
     //if form validation fails, return errors early. Otherwise continue
     if(!validatedFields.success){
         return {

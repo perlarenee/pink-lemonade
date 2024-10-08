@@ -20,10 +20,10 @@ export default async function NewContributions() {
     <main className="p-16 mb-16">
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Contributions', href: '/contributors/contributions' },
+          { label: 'Library', href: '/library' },
           {
             label: 'Create Refreshment',
-            href: '/contributors/contributions/new',
+            href: '/library/new',
             active: true,
           },
         ]}
