@@ -36,8 +36,30 @@ const FormSchema = z.object({
       }),
       date: z.string(),
   });
-
+  const FormSchemaUpdate = z.object({
+    id: z.string(),
+    contributor: z.string({
+        invalid_type_error: "Please select a contributor.",
+    }),
+    title: z.string()
+    .min(1, { message: "Please input a title" }),
+    content: z.string()
+    .min(1, { message: "Please describe your contribution" }),
+    image_url: z.string()
+    .min(1, { message: "Please input an image" }),
+    tags: z.string()
+    .min(1, { message: "Please select at least one tag." }),
+    formats: z.string()
+    .min(1, { message: "Please select at least one format." }),
+    length: z.string()
+    .min(1, { message: "Please estimate how long it would take an average person to enjoy your contribution." }),
+    status: z.enum(['pending','declined','approved'],{
+        invalid_type_error: "Please select an refreshment status."
+    }),
+    date: z.string(),
+});
 const CreateRefreshment = FormSchema.omit({ id: true, date: true });
+const UpdateRefreshment = FormSchemaUpdate.omit({ id: true, date: true });
 
 export type State = {
     errors?: {
@@ -56,7 +78,7 @@ export type State = {
 
 
 export async function createRefreshment(prevState: State, formData: FormData) {
-  
+
   const validatedFields = CreateRefreshment.safeParse({
         contributor: formData.get('contributor'),
         title: formData.get('title'),
@@ -105,21 +127,35 @@ export async function createRefreshment(prevState: State, formData: FormData) {
 }
 
 export async function updateRefreshment(id: string, prevState: State, formData: FormData){
+  const newImage = formData.get('image_url') ? true : false;
 
-
-    //validate using Zod
-    const validatedFields = CreateRefreshment.safeParse({
-        contributor: formData.get('contributor'),
-        title: formData.get('title'),
-        content: formData.get('content'),
-        image_url: formData.get('image_url') as File,
-        tags: formData.get('tags'),
-        formats: formData.get('formats'),
-        length: formData.get('length'),
-        status: formData.get('status'),
+  var validatedFields;
+  //validate using Zod
+  //if new image is selected, use create refreshment schema to handle file format, otherwise use schema that uses a simple string
+  if(newImage){
+    validatedFields = CreateRefreshment.safeParse({
+      contributor: formData.get('contributor'),
+      title: formData.get('title'),
+      content: formData.get('content'),
+      image_url: formData.get('image_url') as File,
+      tags: formData.get('tags'),
+      formats: formData.get('formats'),
+      length: formData.get('length'),
+      status: formData.get('status'),
     });
+  }else{
+    validatedFields = UpdateRefreshment.safeParse({
+      contributor: formData.get('contributor'),
+      title: formData.get('title'),
+      content: formData.get('content'),
+      image_url: formData.get('image'),
+      tags: formData.get('tags'),
+      formats: formData.get('formats'),
+      length: formData.get('length'),
+      status: formData.get('status'),
+    });
+  }
 
-   
     //if form validation fails, return errors early. Otherwise continue
     if(!validatedFields.success){
         return {
@@ -128,17 +164,21 @@ export async function updateRefreshment(id: string, prevState: State, formData: 
         };
     }
 
-    // Prepare data for insertion into the database
+    // Prepare data for insertion into the database. check for file format vs simple string
     const {contributor, title, content, image_url, tags, formats, length, status} = validatedFields.data;
-    const blob = await put(image_url.name, image_url, {
+    var imgPath = image_url;
+    if(newImage){
+      const blob = await put(image_url.name, image_url, {
         access: 'public',
       });
+      imgPath = blob.url;
+    }
 
     //insert data into database
     try{
         await sql `
         UPDATE refreshments
-        SET contributor_id = ${contributor}, title = ${title}, content = ${content}, image_url = ${blob.url}, tags = ${tags}, format = ${formats}, length = ${length}, status = ${status}
+        SET contributor_id = ${contributor}, title = ${title}, content = ${content}, image_url = ${imgPath}, tags = ${tags}, format = ${formats}, length = ${length}, status = ${status}
         WHERE id = ${id}
         `;
     } catch (error){

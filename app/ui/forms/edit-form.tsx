@@ -2,6 +2,7 @@
 
 import { ContributorField, FormatField, RefreshmentForm, TagField} from '@/app/lib/definitions';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   CheckIcon,
   ClockIcon,
@@ -31,6 +32,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
   const formatsRef = useRef<HTMLInputElement>(null); 
   const statusRef = useRef<HTMLInputElement>(null); 
   const [textareaContent, setTextareaContent] = useState(refreshment.content);
+  const [newImage, setNewImage] = useState(false);
   
     //after page load, set preloaded checkboxes and radio buttons
     useEffect(() => { 
@@ -91,6 +93,47 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
         }
     }
 
+
+  //handle image
+
+  function HandleImage(){
+    if(refreshment.image_url && !newImage){
+      return (
+
+        <>
+         <Image
+            src={refreshment.image_url}
+            className=""
+            width={200}
+            height={200}
+            alt={`${refreshment.title}`}
+          />
+           <input 
+              id="image"
+              name="image"
+              type="text"
+              className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+              aria-describedby="image_url_error"
+              defaultValue={refreshment.image_url}
+          />
+           <Button className="mt-2" onClick={() => setNewImage(true)}>Edit Image</Button>
+        </>
+      );
+    }
+    return (
+      <>
+        <input 
+        id="image_url"
+        name="image_url"
+        type="file"
+        placeholder="Your image_url here"
+        className="peer block w-full rounded-md border border-gray-200 py-2 text-sm outline-2 placeholder:text-gray-500"
+        aria-describedby="image_url_error"
+        //value={imageUrl}//do this later. for now, they can select a new image when editing
+        />
+        <Button className="mt-2" onClick={() => setNewImage(false)}>Use Existing Image</Button>
+      </>)
+  }
 
   //handle tag clicks
   function handleTags(event:any){
@@ -256,20 +299,11 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
  {/* File Upload*/}
  <div className="mb-4">
             <label htmlFor="image_url" className="mb-2 block text-sm font-medium">
-                Upload your file
+                Media File
             </label>
             <div className="relative mt-2 rounded-md">
                 <div className="relative">
-                    <input 
-                        id="image_url"
-                        name="image_url"
-                        type="file"
-                        placeholder="Your image_url here"
-                        className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                        aria-describedby="image_url_error"
-                        //value={imageUrl}//do this later. for now, they can select a new image when editing
-                    />
-                    <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"  />
+                    <HandleImage />
                 </div>
 
                 <div id="image_url-error" aria-live="polite" aria-atomic="true">
