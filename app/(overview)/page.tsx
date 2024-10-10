@@ -44,21 +44,14 @@ export default async function Home({
       {/* top row */}
       <div className="flex z-10 w-full justify-center justify-between items-center flex-col">
         <div>
-        <Link
-            className="pointer-events-none flex gap-2 p-8 lg:pointer-events-auto lg:p-0 text-center"
-            href="https://weblocomotive.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="/images/pinklemonade.png"
-              alt="Pink Lemonade Logo"
-              className=""
-              width={600}
-              height={328}
-              priority
-            />
-          </Link>
+          <Image
+            src="/images/pinklemonade.png"
+            alt="Pink Lemonade Logo"
+            className=""
+            width={600}
+            height={328}
+            priority
+          />
           <Link
             className={`${inter.className} pointer-events-none block gap-2 p-0 lg:pointer-events-auto text-center w-full`}
             href="https://weblocomotive.com"

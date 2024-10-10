@@ -11,7 +11,7 @@ import RefreshmentsTable from "@/app/ui/table";
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Admin - Library',
+  title: 'Library',
 };
 
 export default async function AdminLibrary({

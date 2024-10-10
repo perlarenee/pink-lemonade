@@ -6,7 +6,7 @@ import { fetchContributors, fetchTags, fetchFormats, fetchRefreshmentById } from
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: `Contributors  - Edit Refreshment`,
+  title: `Library  - Edit Refreshment`,
 };
 
 export default async function EditContributions({ params }: { params: { id: string } }){

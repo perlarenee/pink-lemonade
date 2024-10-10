@@ -45,6 +45,32 @@ export function UpdateRefreshmentButton({ id }: { id: string }) {
   );
 }
 
+export function UpdateRefreshmentButtonLarge({ id }: { id: string }) {
+  return (
+    <div className="flex mt-4">
+    <Link
+      href={`/library/${id}/edit`}
+      className="flex flex-row justify-center h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800"
+    ><span>Update</span>
+      <PencilIcon className="h-5 md:ml-4" />
+    </Link>
+    </div>
+    
+  );
+}
+
+export function DeleteRefreshmentButtonLarge({ id }: { id: string }) {
+  const deleteRefreshmentById = DeleteRefreshment.bind(null,id);
+  return (
+    <form action={deleteRefreshmentById}>
+      <button type="submit" className="bg-red-500 text-white mt-4 flex h-10 items-center rounded-lg px-4 text-sm font-medium transition-colors hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700">
+        <span>Delete</span>
+        <TrashIcon className="h-5 md:ml-4" />
+      </button>
+      </form>
+  );
+}
+
 export function DeleteRefreshmentButton({ id }: { id: string }) {
   const deleteRefreshmentById = DeleteRefreshment.bind(null,id);
   return (

@@ -197,21 +197,16 @@ export async function updateRefreshment(id: string, prevState: State, formData: 
     export async function DeleteRefreshment(id: string){
         //throw new Error('Failed to Delete Refreshment');
     
-    
         try{
             await sql `
             DELETE FROM refreshments WHERE id = ${id}
             `;
-            //revalidate the cache for the location page and redirect the user
-            revalidatePath('/contributors/contributions');
-            //redirect('/contributors/contributions');
-            return {
-                message: 'Deleted Refreshment.',
-            }
         } catch(error){
             return {
                 message: 'Database Error: Failed to Delete Refreshment.',
             }
         }
-        
+        revalidatePath('/library');
+        redirect('/library');
+
     }

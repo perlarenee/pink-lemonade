@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 //import {Image} from '@tiptap/react';
 //import {UpdateRefreshmentButton, DeleteInvoice } from '@/app/ui/invoices/buttons';
 //import InvoiceStatus from '@/app/ui/invoices/status';
@@ -123,6 +124,9 @@ export default async function RefreshmentsTable({
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                   <div className="flex items-center gap-3">
+                  <Link
+                    href={`/library/${ref.id}/item`}
+                  >
                       <Image
                         src={ref.image_url}
                         className=""
@@ -131,6 +135,7 @@ export default async function RefreshmentsTable({
                         alt={`${ref.title}`}
                       />
                       <p>{ref.title}</p>
+                      </Link>
                       <div  className="text-sm text-gray-500"  dangerouslySetInnerHTML={{__html: ref.content}}/>
                     </div>
                   </td>

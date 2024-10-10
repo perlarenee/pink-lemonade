@@ -188,7 +188,8 @@ export async function fetchRefreshmentById(id: string) {
         refreshments.tags,
         refreshments.format, 
         refreshments.length, 
-        refreshments.status
+        refreshments.status,
+        refreshments.date
       FROM refreshments
       WHERE refreshments.id = ${id};
     `;

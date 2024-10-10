@@ -112,7 +112,7 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
               id="image"
               name="image"
               type="text"
-              className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+              className="hidden peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               aria-describedby="image_url_error"
               defaultValue={refreshment.image_url}
           />
@@ -129,7 +129,6 @@ export default function Form({refreshment, contributors, tags, formats }: {refre
         placeholder="Your image_url here"
         className="peer block w-full rounded-md border border-gray-200 py-2 text-sm outline-2 placeholder:text-gray-500"
         aria-describedby="image_url_error"
-        //value={imageUrl}//do this later. for now, they can select a new image when editing
         />
         <Button className="mt-2" onClick={() => setNewImage(false)}>Use Existing Image</Button>
       </>)
