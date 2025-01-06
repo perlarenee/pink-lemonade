@@ -30,9 +30,6 @@ export default async function Home({
       page?:string;
   };
 }) {
-    //const query = '';
-    //const currentPage = 1;
-    //const totalPages = 2; 
 
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
