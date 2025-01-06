@@ -37,8 +37,6 @@ export default async function Home({
 
   return (
     <main className="flex min-h-screen flex-col items-center p-16 md:p-24">
-
-      {/* top row */}
       <div className="flex z-10 w-full justify-center justify-between items-center flex-col">
         <div>
           <Image
