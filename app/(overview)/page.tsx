@@ -1,7 +1,7 @@
 
 
 import Image from "next/image";
-import {inter, teko} from '@/app/ui/fonts';
+import {inter} from '@/app/ui/fonts';
 import Link from "next/link";
 import {PrefMenu} from '@/app/ui/buttons';
 import Selections from '@/app/ui/selections';
