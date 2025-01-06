@@ -11,7 +11,7 @@ import { Suspense } from "react";
 import { fetchRefreshmentsPages } from "@/app/lib/data";
 import { DataFeedSkeleton } from '@/app/ui/skeletons';
 import Pagination from "@/app/ui/pagination";
-import Search from "@/app/ui/search";
+/*import Search from "@/app/ui/search";*/
 import {
   BoltIcon,
 } from '@heroicons/react/24/outline';
